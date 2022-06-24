@@ -15,3 +15,12 @@ body {
   --bg-blue-10: #d6e5ff;
   --color-main-white: #ffff
 }
+
+.container-home {
+  height: 100vh;
+  width: 100%;
+  background-color: var(--bg-main-color-100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

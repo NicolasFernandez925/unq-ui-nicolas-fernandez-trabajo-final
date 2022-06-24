@@ -1,22 +1,13 @@
-.container-home {
-    height: 100vh;
-    width: 100%;
-    background-color: var(--bg-main-color-100);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.container-home .image-logo-game {
+.image-logo-game {
     height: 100%;
     width: 100%;
 }
-
-.container-home .text_select-mode{
+.text_select-mode{
     color:var(--color-main-white);
     letter-spacing: 1px;
 }
 
-.container-home .button_select-player {
+.button_select-player {
     padding: 10px 20px;
     color: var(--bg-main-color-100);
     border-radius: 4px;
@@ -25,17 +16,15 @@
     letter-spacing: 1px;
 }
 
-.container-home .button_select-player:hover {
+.button_select-player:hover {
     transform: scale(1.1); 
 }
-
-.container-home .button_select-player:nth-child(1) {
+.button_select-player:nth-child(1) {
     margin-right: 20px;  
     background-color: var(--bg-green-10); 
     border: 2px solid var(--bg-green-50);
 }
-
-.container-home .button_select-player:nth-child(2) {
+.button_select-player:nth-child(2) {
     margin-right: 20px;  
     background-color: var(--bg-blue-10); 
     border: 2px solid var(--bg-blue-50);
