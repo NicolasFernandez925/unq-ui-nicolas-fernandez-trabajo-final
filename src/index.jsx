@@ -4,13 +4,17 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { GameProvider } from 'context/Game';
+import { ModalProvider } from 'context/Modal';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <GameProvider>
-      <App />
-    </GameProvider>
+    <ModalProvider>
+      <GameProvider>
+        <App />
+      </GameProvider>
+    </ModalProvider>
   </React.StrictMode>
 );
 

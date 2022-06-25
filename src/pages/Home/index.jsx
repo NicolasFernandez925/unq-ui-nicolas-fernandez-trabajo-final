@@ -2,11 +2,13 @@ import React from 'react'
 import ImageGame from "assets/game.png"
 import { Container, Col, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+import { useModal } from 'context/Modal'
 
 import './style.css'
 
 const Home = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const {setModalShow} = useModal()
 
   const handleOnePlayer = () => {
       navigate('/game')
@@ -14,6 +16,10 @@ const Home = () => {
 
   const handleTwoPlayer = () => {
       navigate('/game')
+  }
+
+  const handleOpenModalReadRules = () => {
+    setModalShow(prev => !prev)
   }
 
   return (  
@@ -28,6 +34,7 @@ const Home = () => {
           <Col className='d-flex justify-content-center mt-5'> 
               <button onClick={handleOnePlayer} className='button_select-player' type='button'>1 player</button>
               <button onClick={handleTwoPlayer} className='button_select-player' type='button'>2 player</button>
+              <span role="button" onClick={handleOpenModalReadRules} className='btn_read-rules' type='button'>Read rules</span>
           </Col>
         </Row>
       </Container>
