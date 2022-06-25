@@ -12,7 +12,7 @@
 }
 
 .container_images-selected{
-    margin-top: 200px!important;
+    margin-top: 100px!important;
 }
 
 .btn_go-back{
@@ -49,6 +49,12 @@
     font-weight: 500;
     font-size: 20px;
     letter-spacing: 2px;
+}
+
+.descripcion_victoria{
+    color: var(--color-main-white);
+    font-weight: 500;
+    font-size: 20px;
 }
 
 .puntos_ganados, .puntos_perdidos, .puntos_empatados{

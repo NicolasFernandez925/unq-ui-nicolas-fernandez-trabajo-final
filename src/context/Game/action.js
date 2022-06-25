@@ -1,4 +1,4 @@
-import { MODO_JUEGO, JUGADA_SELECCIONADA, REINICIAR_JUEGO, EMPATE_VS_MAQUINA, JUGADA_MAQUINA } from "./types"
+import { MODO_JUEGO, JUGADA_SELECCIONADA, REINICIAR_JUEGO, EMPATE_VS_MAQUINA, JUGADA_MAQUINA, DESCRIPCION_VICTORIA } from "./types"
 
 
 export const seleccionarModo = (mode) => {
@@ -19,6 +19,13 @@ export const empateVsMaquina = (hayEmpate) => {
     return {
         type: EMPATE_VS_MAQUINA,
         payload: hayEmpate
+    }
+}
+
+export const descripcionVictoria = (message) => {
+    return {
+        type: DESCRIPCION_VICTORIA,
+        payload: message
     }
 }
 

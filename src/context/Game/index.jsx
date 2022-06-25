@@ -3,13 +3,13 @@ import { listItemsImages } from 'constants';
 import { winstTo } from 'constants';
 import { MODO } from 'constants/enums';
 import {createContext, useContext, useEffect, useReducer, useRef} from 'react'
-import { empateVsMaquina, jugadaSeleccionadaMaquina } from './action';
+import { descripcionVictoria, empateVsMaquina, jugadaSeleccionadaMaquina } from './action';
 import { gameReducer } from './gameReducer'
 import { GANO_JUGADOR_UNO_VS_MAQUINA } from './types';
 
 export const initialState = {
     modo: "",
-    mensajeGanador: "",
+    descripcionVictoria: "",
     empates: 0,
     jugadorUno: {
         perdidos: 0,
@@ -49,9 +49,11 @@ export const GameProvider = ({children}) => {
          const jugadorGanoJugada = jugadaLeganaALaMaquina();   
          if(hayEmpateJugadorVsMaquina()) {
             dispatch(empateVsMaquina(true));
+            dispatch(descripcionVictoria(generarMensajeDescripcionPartida())) 
             return;
          }  
-         dispatch({type: GANO_JUGADOR_UNO_VS_MAQUINA, payload: jugadorGanoJugada});   
+         dispatch({type: GANO_JUGADOR_UNO_VS_MAQUINA, payload: jugadorGanoJugada});  
+         dispatch(descripcionVictoria(generarMensajeDescripcionPartida())) 
         }
     },[state.jugadorUno.jugadaActual, state.modo]);
 
@@ -61,6 +63,21 @@ export const GameProvider = ({children}) => {
 
     const jugadaLeganaALaMaquina = () => {  
       return winstTo[state.jugadorUno.jugadaActual.name]?.gana.includes(jugadaActualMaquina.current.name)
+    }
+
+    const generarMensajeDescripcionPartida = () => {
+        let message = "";
+        if(jugadaLeganaALaMaquina()){
+            message = `${state.jugadorUno.jugadaActual.name} le gana a ${jugadaActualMaquina.current.name}`
+        }
+        else if(hayEmpateJugadorVsMaquina()){
+            message =`${state.jugadorUno.jugadaActual.name} empata contra ${jugadaActualMaquina.current.name}`
+        }
+        else{
+            message = `${state.jugadorUno.jugadaActual.name} pierde contra ${jugadaActualMaquina.current.name}`
+        }
+
+        return message;
     }
     
     const value = {

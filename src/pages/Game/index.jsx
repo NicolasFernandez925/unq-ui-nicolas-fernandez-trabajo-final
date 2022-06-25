@@ -20,7 +20,7 @@ const Game = () => {
   const handleSelectedImageGame = (imagesGame, nameImage) => {
     dispatch(jugadaSeleccionada(imagesGame, nameImage))
   }
-console.log(jugadorUno)
+
   return (
     <Container fluid="lg">
         <span role='button' onClick={handleGoBack} className='btn_go-back'>Volver</span>
@@ -67,6 +67,11 @@ console.log(jugadorUno)
           <Col xs={4} lg={2} className='text-center'>
             <div><p className='m-0 text-perdidos'>Perdidos</p></div>   
             <span className='puntos_perdidos'>{puntosPerdidosJugadorUno}</span>
+          </Col>
+        </Row>
+        <Row className="d-flex justify-content-center mt-5">
+          <Col lg={8} className="d-flex justify-content-center flex-wrap">
+            <p className='descripcion_victoria'>{state.descripcionVictoria}</p>
           </Col>
         </Row>
         <Row className="d-flex justify-content-center container_images-selected">
