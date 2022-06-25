@@ -27,13 +27,9 @@
 .button_select-player:hover {
     transform: scale(1.1); 
 }
-.button_select-player:nth-child(1) {
-    margin-right: 20px;  
-    background-color: var(--bg-green-10); 
-    border: 2px solid var(--bg-green-50);
-}
-.button_select-player:nth-child(2) {
-    margin-right: 20px;  
+
+.button_select-player{
+
     background-color: var(--bg-blue-10); 
     border: 2px solid var(--bg-blue-50);
 }
@@ -49,4 +45,15 @@
     to {
       transform: rotate(359deg);
     }
+  }
+
+  @media (max-width: 640px) {
+    .button_select-player {
+      padding: 10px 10px;
+      font-size: 14px;   
+    }
+    .btn_read-rules{
+      font-size: 15px;
+    }
+    
   }

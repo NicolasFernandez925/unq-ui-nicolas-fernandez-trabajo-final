@@ -35,13 +35,22 @@ const Home = () => {
             <img className='image-logo-game rotate' src={ImageGame} alt='img-game' />
           </Col>
         </Row>
-        <Row className='mt-5'>
+        <Row className='my-5 d-flex justify-content-center'>
           <h2 className='text-center text_select-mode'>Seleccionar modo</h2>
-          <Col className='d-flex justify-content-center mt-5'> 
-              <button onClick={handleOnePlayer} className='button_select-player' type='button'>1 jugador</button>
-              <button onClick={handleTwoPlayer} className='button_select-player' type='button'>2 jugadores</button>
-              <span role="button" onClick={handleOpenModalReadRules} className='btn_read-rules' type='button'>Leer reglas</span>
-          </Col>
+        </Row>
+        <Row className='d-flex justify-content-center align-items-center'>
+            <Col xs={4} lg={2}  className='d-flex justify-content-center'> 
+                <button onClick={handleOnePlayer} className='button_select-player w-100' type='button'>1 jugador</button>
+            </Col>
+            <Col xs={4} lg={2}  className='d-flex justify-content-center'>          
+                <button onClick={handleTwoPlayer} className='button_select-player w-100' type='button'>2 jugadores</button>
+            </Col>
+         
+        </Row>
+        <Row className='d-flex justify-content-center mt-5'>
+            <Col lg={2}> 
+                <span role="button" onClick={handleOpenModalReadRules} className='btn_read-rules' type='button'>Leer reglas</span>
+            </Col>
         </Row>
       </Container>
   )
