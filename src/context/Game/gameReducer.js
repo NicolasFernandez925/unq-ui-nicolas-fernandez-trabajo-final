@@ -1,9 +1,9 @@
-import { MODO } from "constants/enums"
+
 import { initialState } from ".";
-import { MODO_JUEGO, JUGADA_SELECCIONADA, REINICIAR_JUEGO,  GANO_JUGADOR_UNO_VS_MAQUINA, EMPATE_VS_MAQUINA, JUGADA_MAQUINA, DESCRIPCION_VICTORIA } from "./types"
+import { MODO_JUEGO, JUGADA_SELECCIONADA, REINICIAR_JUEGO,  GANO_JUGADOR_UNO_VS_MAQUINA, EMPATE_VS_MAQUINA, JUGADA_MAQUINA, DESCRIPCION_VICTORIA, JUGADA_SELECCIONADA_JUGADOR_DOS } from "./types"
 
 export const gameReducer = (state, {type, payload}) => {
-    const modo = state.modo === MODO.JUGADOR_UNO ? "jugadorUno" : "jugadorDos"; 
+    //const modo = state.modo === MODO.JUGADOR_UNO ? "jugadorUno" : "jugadorDos"; 
     switch (type) {
         case MODO_JUEGO:
             return {
@@ -13,7 +13,12 @@ export const gameReducer = (state, {type, payload}) => {
         case JUGADA_SELECCIONADA:
             return {
                 ...state,
-                [modo]: {...state[modo], jugadaActual: { ...state.jugadorUno.jugadaActual, image: payload.imagenJugada, name: payload.nombreJugada} }
+                jugadorUno: {...state.jugadorUno, jugadaActual: { ...state.jugadorUno.jugadaActual, image: payload.imagenJugada, name: payload.nombreJugada} }
+            }
+        case JUGADA_SELECCIONADA_JUGADOR_DOS:
+            return {
+                ...state,
+                jugadorDos: {...state.jugadorDos, jugadaActual: { ...state.jugadorDos.jugadaActual, image: payload.imagenJugada, name: payload.nombreJugada} }
             }
         case GANO_JUGADOR_UNO_VS_MAQUINA:  
             let puntosGanados = 0;
@@ -28,7 +33,7 @@ export const gameReducer = (state, {type, payload}) => {
 
             return {
                 ...state,
-                [modo]: {...state[modo], ganados: state[modo].ganados + puntosGanados, perdidos: state[modo].perdidos + puntosPerdidos} 
+                jugadorUno: {...state.jugadorUno, ganados: state.jugadorUno.ganados + puntosGanados, perdidos: state.jugadorUno.perdidos + puntosPerdidos} 
             }
         case EMPATE_VS_MAQUINA:
             let puntosEmpate = 0;

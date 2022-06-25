@@ -14,16 +14,17 @@ export const initialState = {
     jugadorUno: {
         perdidos: 0,
         ganados: 0,
-        nombre: '',
+        nombre: 'Jugador 1',
         jugadaActual: {},
     },
     jugadorDos: {
         ganados: 0,
-        nombre: '',
+        nombre: 'Jugador 2',
         jugadaActual: {},
     },
     maquina: {
         jugadaActual: {},
+        nombre: "Maquina"
     },
 }
 
@@ -34,20 +35,23 @@ export const GameProvider = ({children}) => {
     const [state, dispatch] = useReducer(gameReducer, initialState);
     const jugadaActualMaquina = useRef();
 
-    const realizoJugada = Object.keys(state.jugadorUno.jugadaActual).length !== 0;
-    const esJugadorUno = state.modo === MODO.JUGADOR_UNO;
+    const realizoJugadaJugadorUno = Object.keys(state.jugadorUno.jugadaActual).length !== 0;
+    const realizoJugadaJugadorDos = Object.keys(state.jugadorDos.jugadaActual).length !== 0;
+
+    const modoJugadorUno = state.modo === MODO.JUGADOR_UNO;
+    const modoJugadorDos = state.modo === MODO.JUGADOR_DOS;
 
     const jugadaAleatoria = (max) => {
         return Math.floor(Math.random() * max) + 0;
     }
 
     useEffect(() => {
-        if(esJugadorUno && realizoJugada ) {
+        if(modoJugadorUno && realizoJugadaJugadorUno ) {
          const jugadaMaquina = listItemsImages[jugadaAleatoria(jugadas.length - 1)];
          jugadaActualMaquina.current = jugadaMaquina;
          dispatch(jugadaSeleccionadaMaquina(jugadaMaquina.image, jugadaMaquina.name))   
-         const jugadorGanoJugada = jugadaLeganaALaMaquina();   
-         if(hayEmpateJugadorVsMaquina()) {
+         const jugadorGanoJugada = jugadorUnoLeGanaAOtroJugador(state.jugadorUno.jugadaActual.name, jugadaActualMaquina.current.name);   
+         if(hayEmpate(state.jugadorUno.jugadaActual.name, jugadaActualMaquina.current.name)) {
             dispatch(empateVsMaquina(true));
             dispatch(descripcionVictoria(generarMensajeDescripcionPartida())) 
             return;
@@ -57,24 +61,46 @@ export const GameProvider = ({children}) => {
         }
     },[state.jugadorUno.jugadaActual, state.modo]);
 
-    const hayEmpateJugadorVsMaquina = () => {
-        return state.jugadorUno.jugadaActual.name ===  jugadaActualMaquina.current.name
+    useEffect(() => {
+        if(realizoJugadaJugadorUno && realizoJugadaJugadorDos){
+           
+            //ganadorEntreJugadorUnoYJugadorDos(state.jugadorUno.jugadaActual.name, state.jugadorDos.jugadaActual.name)
+            
+        }
+    }, [realizoJugadaJugadorUno,realizoJugadaJugadorDos])
+
+    const ganadorEntreJugadorUnoYJugadorDos = (jugador1, jugador2) => {
+        if(jugadorUnoLeGanaAOtroJugador(jugador1, jugador2)){
+            alert("jugador 1 le gana a jugador 2")
+        }
+        else if(hayEmpate(jugador1, jugador2)){
+            alert("hay empate")
+        }
+        else{
+            alert("gana jugador 2")
+        }
     }
 
-    const jugadaLeganaALaMaquina = () => {  
-      return winstTo[state.jugadorUno.jugadaActual.name]?.gana.includes(jugadaActualMaquina.current.name)
+    const hayEmpate = (jugador1, jugador2) => {
+        return jugador1 ===  jugador2
+    }
+//state.jugadorUno.jugadaActual.name
+//state.jugador2.jugadaActual.name
+    const jugadorUnoLeGanaAOtroJugador = (jugador1, jugador2) => {
+        return winstTo[jugador1]?.gana.includes(jugador2)
     }
 
     const generarMensajeDescripcionPartida = () => {
+      
         let message = "";
-        if(jugadaLeganaALaMaquina()){
-            message = `${state.jugadorUno.jugadaActual.name} le gana a ${jugadaActualMaquina.current.name}`
+        if(jugadorUnoLeGanaAOtroJugador(state.jugadorUno.jugadaActual.name, jugadaActualMaquina.current.name)){
+            message = `Has Ganado ${state.jugadorUno.jugadaActual.name} le gana a ${jugadaActualMaquina.current.name}`
         }
-        else if(hayEmpateJugadorVsMaquina()){
-            message =`${state.jugadorUno.jugadaActual.name} empata contra ${jugadaActualMaquina.current.name}`
+        else if(hayEmpate(state.jugadorUno.jugadaActual.name, jugadaActualMaquina.current.name)){
+            message =`Has empatado - ${state.jugadorUno.jugadaActual.name} empata contra ${jugadaActualMaquina.current.name}`
         }
         else{
-            message = `${state.jugadorUno.jugadaActual.name} pierde contra ${jugadaActualMaquina.current.name}`
+            message = `Has perdido - ${state.jugadorUno.jugadaActual.name} pierde contra ${jugadaActualMaquina.current.name}`
         }
 
         return message;
@@ -87,6 +113,10 @@ export const GameProvider = ({children}) => {
         empatados: state.empates,
         jugadorMaquina: state.maquina.jugadaActual,
         jugadorUno: state.jugadorUno.jugadaActual,
+        jugadorDos: state.jugadorDos.jugadaActual,
+        ganadorEntreJugadorUnoYJugadorDos,
+        realizoJugadaJugadorUno,
+        realizoJugadaJugadorDos,
         dispatch,
     }
 

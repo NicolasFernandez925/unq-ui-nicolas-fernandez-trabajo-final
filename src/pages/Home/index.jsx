@@ -16,12 +16,12 @@ const Home = () => {
 
   const handleOnePlayer = () => {
       dispatch(seleccionarModo(MODO.JUGADOR_UNO));
-      navigate('/game');
+      navigate('/game?mode=singlePlayer');
   }
 
   const handleTwoPlayer = () => {
     dispatch(seleccionarModo(MODO.JUGADOR_DOS));
-      navigate('/game');
+      navigate('/game?mode=multiplayer');
   }
 
   const handleOpenModalReadRules = () => {

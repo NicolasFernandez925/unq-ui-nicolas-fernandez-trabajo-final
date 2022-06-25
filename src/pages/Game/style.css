@@ -15,9 +15,26 @@
     margin-top: 100px!important;
 }
 
-.btn_go-back{
+.btn_go-back, .btn_reiniciar-partida{
     color: var(--color-main-white);
     font-weight: 500;
+    border: 1px solid rgb(95, 95, 95);
+    background-color: transparent;
+    padding: 4px 10px;
+    letter-spacing: 2px;
+    border-radius: 3px;
+    transition: border 500ms ease;
+}
+.btn_reiniciar-partida:hover{
+    border: 1px solid var(--bg-green-50);
+}
+
+.btn_go-back:hover{
+    border: 1px solid var(--bg-blue-50);
+}
+
+.btn_reiniciar-partida{
+    margin-left: 15px;
 }
 
 .image_selected{
