@@ -15,6 +15,17 @@
     margin-top: 200px!important;
 }
 
+.btn_go-back{
+    color: var(--color-main-white);
+    font-weight: 500;
+}
+
+.text_vs{
+    font-size: 25px;
+    color: var(--color-main-white);
+    font-weight: 500;
+}
+
 @media (max-width: 1280px) {
     .selected-image{
         height: 160px;
@@ -39,5 +50,9 @@
     }
     .selected-image{
         height: 140px;
+    }
+    .btn_go-back{
+       margin-bottom: 40px;
+       display: block;
     }
 }
