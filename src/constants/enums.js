@@ -1,4 +1,4 @@
-export const selected = {
+export const JUGADA = {
     LAGARTO: "LAGARTO",
     TIJERA: "TIJERA",
     PIEDRA: "PIEDRA",
@@ -6,7 +6,7 @@ export const selected = {
     PAPEL: "PAPEL"
 }
 
-export const mode = {
-    PLAYER_ONE: "PLAYER_ONE",
-    PLAYER_TWO: "PLAYER_TWO",
+export const MODO = {
+    JUGADOR_UNO: "JUGADOR_UNO",
+    JUGADOR_DOS: "JUGADOR_DOS",
 }

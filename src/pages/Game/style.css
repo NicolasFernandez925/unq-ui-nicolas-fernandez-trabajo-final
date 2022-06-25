@@ -20,6 +20,12 @@
     font-weight: 500;
 }
 
+.image_selected-user-one{
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+}
+
 .text_vs{
     font-size: 25px;
     color: var(--color-main-white);

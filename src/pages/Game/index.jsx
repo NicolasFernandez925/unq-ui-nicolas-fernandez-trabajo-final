@@ -1,20 +1,24 @@
 import React from 'react'
-import Tijera from 'assets/tijera.png'
-import Lagarto from 'assets/lagarto.png'
-import Papel from 'assets/papel.png'
-import Spock from 'assets/spock.png'
-import Piedra from 'assets/piedra.png'
 import { Col, Container, Row } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import { useGame } from 'context/Game'
 
 import "./style.css"
-import { useNavigate } from 'react-router-dom'
+import { listItemsImages } from 'constants'
+import { jugadaSeleccionada, reiniciarJuego } from 'context/Game/action'
 
 const Game = () => {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const {state, dispatch} = useGame();
 
   const handleGoBack = () => {
-    navigate(-1)
+    dispatch(reiniciarJuego());
+    navigate(-1);
+  }
+
+  const handleSelectedImageGame = (imagesGame, nameImage) => {
+    dispatch(jugadaSeleccionada(imagesGame, nameImage))
   }
 
   return (
@@ -22,7 +26,9 @@ const Game = () => {
         <span role='button' onClick={handleGoBack} className='btn_go-back'>Go back</span>
         <Row className="d-flex justify-content-center align-items-center">
           <Col xs={5} lg={2}>
-            <div className='selected-image'></div>
+            <div className='selected-image'>
+              <img className='image_selected-user-one' src={state.jugadorUno.jugadaActual.image} alt="" />
+            </div>
           </Col>
           <Col xs={2} lg={1} className='text-center'>
               <span className='text_vs'>VS</span>
@@ -44,11 +50,11 @@ const Game = () => {
         </Row>
         <Row className="d-flex justify-content-center container_images-selected">
           <Col lg={8} className="d-flex justify-content-center flex-wrap">
-            <img className='image-game rotate' src={Tijera} alt='img-game' />
-            <img className='image-game rotate' src={Lagarto} alt='img-game' />
-            <img className='image-game rotate' src={Spock} alt='img-game' />
-            <img className='image-game rotate' src={Papel} alt='img-game' />
-            <img className='image-game rotate' src={Piedra} alt='img-game' />
+            {
+              listItemsImages.map(imagesGame => (
+                <img onClick={() => handleSelectedImageGame(imagesGame.image, imagesGame.name)} className='image-game rotate' src={imagesGame.image} alt='img-game' key={crypto.randomUUID()} />
+              ))
+            }
           </Col>
         </Row>
     </Container>

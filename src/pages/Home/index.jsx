@@ -3,23 +3,29 @@ import ImageGame from "assets/game.png"
 import { Container, Col, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { useModal } from 'context/Modal'
+import { useGame } from 'context/Game'
+import { seleccionarModo } from 'context/Game/action'
+import { MODO } from 'constants/enums'
 
 import './style.css'
 
 const Home = () => {
   const navigate = useNavigate();
-  const {setModalShow} = useModal()
+  const {setModalShow} = useModal();
+  const {dispatch} = useGame();
 
   const handleOnePlayer = () => {
-      navigate('/game')
+      dispatch(seleccionarModo(MODO.JUGADOR_UNO));
+      navigate('/game');
   }
 
   const handleTwoPlayer = () => {
-      navigate('/game')
+    dispatch(seleccionarModo(MODO.JUGADOR_DOS));
+      navigate('/game');
   }
 
   const handleOpenModalReadRules = () => {
-    setModalShow(prev => !prev)
+    setModalShow(prev => !prev);
   }
 
   return (  

@@ -1,15 +1,23 @@
 import {createContext, useContext, useReducer} from 'react'
+import { gameReducer } from './gameReducer'
 
-const initialState = {
-    mode: "",
-    winningMessage: "",
+/*const jugada = {
+    nombreJugada: 'tijera',
+    imagen: 'tijer.png',
+};
+*/
+  
+
+export const initialState = {
+    modo: "",
+    mensajeGanador: "",
     empates: 0,
-    jugadorOne: {
+    jugadorUno: {
         ganados: 0,
         nombre: '',
         jugadaActual: {},
     },
-    jugadorTwo: {
+    jugadorDos: {
         ganados: 0,
         nombre: '',
         jugadaActual: {},
@@ -19,11 +27,11 @@ const initialState = {
     },
 }
 
-const GameContext = createContext()
+const GameContext = createContext();
 
 export const GameProvider = ({children}) => {
 
-    const [state, dispatch] = useReducer(initialState)
+    const [state, dispatch] = useReducer(gameReducer, initialState);
 
 
     const value = {
@@ -39,10 +47,10 @@ export const GameProvider = ({children}) => {
 }
 
 export const useGame = () => {
-    const context = useContext(GameContext)
+    const context = useContext(GameContext);
 
     if(context === undefined) {
-        throw new Error('useGame must be used within a GameProvider')
+        throw new Error('useGame must be used within a GameProvider');
     }
     return context;
 }
