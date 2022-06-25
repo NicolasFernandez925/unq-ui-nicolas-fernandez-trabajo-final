@@ -1,9 +1,8 @@
-
+import { MODO } from "constants/enums";
 import { initialState } from ".";
-import { MODO_JUEGO, JUGADA_SELECCIONADA, REINICIAR_JUEGO,  GANO_JUGADOR_UNO_VS_MAQUINA, EMPATE_VS_MAQUINA, JUGADA_MAQUINA, DESCRIPCION_VICTORIA, JUGADA_SELECCIONADA_JUGADOR_DOS } from "./types"
+import { MODO_JUEGO, JUGADA_SELECCIONADA, REINICIAR_JUEGO,  GANO_JUGADOR_UNO_VS_MAQUINA, JUGADA_MAQUINA, DESCRIPCION_VICTORIA, JUGADA_SELECCIONADA_JUGADOR_DOS, SUMAR_PUNTOS_GANADOR_MULTIPLAYER, EMPATE } from "./types"
 
 export const gameReducer = (state, {type, payload}) => {
-    //const modo = state.modo === MODO.JUGADOR_UNO ? "jugadorUno" : "jugadorDos"; 
     switch (type) {
         case MODO_JUEGO:
             return {
@@ -20,26 +19,29 @@ export const gameReducer = (state, {type, payload}) => {
                 ...state,
                 jugadorDos: {...state.jugadorDos, jugadaActual: { ...state.jugadorDos.jugadaActual, image: payload.imagenJugada, name: payload.nombreJugada} }
             }
+        case SUMAR_PUNTOS_GANADOR_MULTIPLAYER:
+                let puntosJugadorDos = 0;
+                let puntosJugadorUno = 0;
+                payload.jugador === MODO.JUGADOR_UNO ? puntosJugadorUno++ : puntosJugadorDos++;
+                console.log(puntosJugadorUno)
+                return {
+                   ...state,
+                   jugadorUno: {...state.jugadorUno, ganados: state.jugadorUno.ganados + puntosJugadorUno},
+                   jugadorDos: {...state.jugadorDos, ganados: state.jugadorDos.ganados + puntosJugadorDos} 
+                }
         case GANO_JUGADOR_UNO_VS_MAQUINA:  
             let puntosGanados = 0;
             let puntosPerdidos = 0;
-
-            if(payload) {
-                puntosGanados = 1
-            }
-            else{
-                puntosPerdidos = 1;
-            }
-
+            payload ? puntosGanados++ : puntosPerdidos++;
+    
             return {
                 ...state,
                 jugadorUno: {...state.jugadorUno, ganados: state.jugadorUno.ganados + puntosGanados, perdidos: state.jugadorUno.perdidos + puntosPerdidos} 
             }
-        case EMPATE_VS_MAQUINA:
+        case EMPATE:
             let puntosEmpate = 0;
-            if(payload){
-                puntosEmpate = 1;
-            }
+            payload && puntosEmpate++;
+      
             return {
                 ...state,
                 empates: state.empates + puntosEmpate

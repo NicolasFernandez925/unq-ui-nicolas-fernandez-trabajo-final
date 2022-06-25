@@ -1,4 +1,4 @@
-import { MODO_JUEGO, JUGADA_SELECCIONADA, REINICIAR_JUEGO, EMPATE_VS_MAQUINA, JUGADA_MAQUINA, DESCRIPCION_VICTORIA, JUGADA_SELECCIONADA_JUGADOR_DOS } from "./types"
+import { MODO_JUEGO, JUGADA_SELECCIONADA, REINICIAR_JUEGO, JUGADA_MAQUINA, DESCRIPCION_VICTORIA, JUGADA_SELECCIONADA_JUGADOR_DOS, EMPATE } from "./types"
 
 
 export const seleccionarModo = (mode) => {
@@ -22,9 +22,9 @@ export const jugadaSeleccionadaJugadorDos = (imagenJugada , nombreJugada) => {
     }
 }
 
-export const empateVsMaquina = (hayEmpate) => {
+export const empate = (hayEmpate) => {
     return {
-        type: EMPATE_VS_MAQUINA,
+        type: EMPATE,
         payload: hayEmpate
     }
 }

@@ -3,9 +3,9 @@ import { listItemsImages } from 'constants';
 import { winstTo } from 'constants';
 import { MODO } from 'constants/enums';
 import {createContext, useContext, useEffect, useReducer, useRef} from 'react'
-import { descripcionVictoria, empateVsMaquina, jugadaSeleccionadaMaquina } from './action';
+import { descripcionVictoria, empate, jugadaSeleccionadaMaquina } from './action';
 import { gameReducer } from './gameReducer'
-import { GANO_JUGADOR_UNO_VS_MAQUINA } from './types';
+import { GANO_JUGADOR_UNO_VS_MAQUINA, SUMAR_PUNTOS_GANADOR_MULTIPLAYER } from './types';
 
 export const initialState = {
     modo: "",
@@ -52,7 +52,7 @@ export const GameProvider = ({children}) => {
          dispatch(jugadaSeleccionadaMaquina(jugadaMaquina.image, jugadaMaquina.name))   
          const jugadorGanoJugada = jugadorUnoLeGanaAOtroJugador(state.jugadorUno.jugadaActual.name, jugadaActualMaquina.current.name);   
          if(hayEmpate(state.jugadorUno.jugadaActual.name, jugadaActualMaquina.current.name)) {
-            dispatch(empateVsMaquina(true));
+            dispatch(empate(true));
             dispatch(descripcionVictoria(generarMensajeDescripcionPartida())) 
             return;
          }  
@@ -64,28 +64,27 @@ export const GameProvider = ({children}) => {
     useEffect(() => {
         if(realizoJugadaJugadorUno && realizoJugadaJugadorDos){
            
-            //ganadorEntreJugadorUnoYJugadorDos(state.jugadorUno.jugadaActual.name, state.jugadorDos.jugadaActual.name)
+            ganadorEntreJugadorUnoYJugadorDos(state.jugadorUno.jugadaActual.name, state.jugadorDos.jugadaActual.name)
             
         }
     }, [realizoJugadaJugadorUno,realizoJugadaJugadorDos])
 
     const ganadorEntreJugadorUnoYJugadorDos = (jugador1, jugador2) => {
-        if(jugadorUnoLeGanaAOtroJugador(jugador1, jugador2)){
-            alert("jugador 1 le gana a jugador 2")
+        if(jugadorUnoLeGanaAOtroJugador(jugador1, jugador2)){  
+            dispatch({type: SUMAR_PUNTOS_GANADOR_MULTIPLAYER, payload: {jugador : MODO.JUGADOR_UNO}})
         }
-        else if(hayEmpate(jugador1, jugador2)){
-            alert("hay empate")
+        else if(hayEmpate(jugador1, jugador2)){    
+            dispatch(empate(true));         
         }
-        else{
-            alert("gana jugador 2")
+        else{       
+            dispatch({type: SUMAR_PUNTOS_GANADOR_MULTIPLAYER, payload: {jugador : MODO.JUGADOR_DO}})
         }
     }
 
     const hayEmpate = (jugador1, jugador2) => {
         return jugador1 ===  jugador2
     }
-//state.jugadorUno.jugadaActual.name
-//state.jugador2.jugadaActual.name
+
     const jugadorUnoLeGanaAOtroJugador = (jugador1, jugador2) => {
         return winstTo[jugador1]?.gana.includes(jugador2)
     }
@@ -112,8 +111,10 @@ export const GameProvider = ({children}) => {
         puntosPerdidosJugadorUno: state.jugadorUno.perdidos,
         empatados: state.empates,
         jugadorMaquina: state.maquina.jugadaActual,
-        jugadorUno: state.jugadorUno.jugadaActual,
-        jugadorDos: state.jugadorDos.jugadaActual,
+        jugadaActualJugadorUno: state.jugadorUno.jugadaActual,
+        jugadaActualJugadorDos: state.jugadorDos.jugadaActual,
+        jugadorUno: state.jugadorUno,
+        jugadorDos: state.jugadorDos,
         ganadorEntreJugadorUnoYJugadorDos,
         realizoJugadaJugadorUno,
         realizoJugadaJugadorDos,
