@@ -1,6 +1,7 @@
 import {createContext, useContext, useReducer} from 'react'
 
 const initialState = {
+    mode: "",
     empates: 0,
     jugadorOne: {
         ganados: 0,
