@@ -10,7 +10,7 @@ import "./style.css"
 const Game = () => {
 
   const navigate = useNavigate();
-  const {state, dispatch} = useGame();
+  const {state, dispatch, puntosGanadosJugadorUno, puntosPerdidosJugadorUno, empatados, jugadorMaquina,jugadorUno} = useGame();
 
   const handleGoBack = () => {
     dispatch(reiniciarJuego());
@@ -26,26 +26,39 @@ const Game = () => {
         <span role='button' onClick={handleGoBack} className='btn_go-back'>Volver</span>
         <Row className="d-flex justify-content-center align-items-center">
           <Col xs={5} lg={2}>
-            <div className='selected-image'>
-              <img className='image_selected-user-one' src={state.jugadorUno.jugadaActual.image} alt="" />
+            <div className='selected-image'>       
+              {
+                jugadorUno?.image && <img className='image_selected' src={jugadorUno?.image} alt="image_selected" />
+              }
             </div>
           </Col>
           <Col xs={2} lg={1} className='text-center'>
               <span className='text_vs'>VS</span>
           </Col>        
           <Col xs={5} lg={2}>
-            <div className='selected-image'></div>    
+            <div className='selected-image'>
+              {
+                jugadorMaquina?.image && <img className='image_selected' src={jugadorMaquina?.image} alt="image_selected" />
+              }
+            </div>    
           </Col>
         </Row>
         <Row className="d-flex justify-content-center align-items-center mt-5">
           <Col xs={2} className='text-center'>
-            <div><p className='m-0 text-white'>Ganados</p></div>
+            <div>
+              <p className='m-0 text_ganados'>Ganados</p>
+              <span className='puntos_ganados'>{puntosGanadosJugadorUno}</span>
+            </div>
           </Col>
           <Col xs={2}className='text-center'>
-              <div><p className='m-0 text-white'>Empatados</p></div>
+              <div>
+                <p className='m-0 text_empatados'>Empatados</p>   
+                <span className='puntos_empatados'>{empatados}</span>
+              </div>
           </Col>        
           <Col xs={2}className='text-center'>
-            <div><p className='m-0 text-white'>Perdidos</p></div>   
+            <div><p className='m-0 text-perdidos'>Perdidos</p></div>   
+            <span className='puntos_perdidos'>{puntosPerdidosJugadorUno}</span>
           </Col>
         </Row>
         <Row className="d-flex justify-content-center container_images-selected">

@@ -1,7 +1,9 @@
 import { jugadas } from 'constants';
+import { listItemsImages } from 'constants';
 import { winstTo } from 'constants';
 import { MODO } from 'constants/enums';
-import {createContext, useContext, useEffect, useReducer} from 'react'
+import {createContext, useContext, useEffect, useReducer, useRef} from 'react'
+import { empateVsMaquina, jugadaSeleccionadaMaquina } from './action';
 import { gameReducer } from './gameReducer'
 import { GANO_JUGADOR_UNO_VS_MAQUINA } from './types';
 
@@ -30,27 +32,44 @@ const GameContext = createContext();
 export const GameProvider = ({children}) => {
 
     const [state, dispatch] = useReducer(gameReducer, initialState);
+    const jugadaActualMaquina = useRef();
 
     const realizoJugada = Object.keys(state.jugadorUno.jugadaActual).length !== 0;
     const esJugadorUno = state.modo === MODO.JUGADOR_UNO;
 
-    useEffect(() => {
-        if(esJugadorUno && realizoJugada ) {
-         const jugadorGanoJugada = jugadaLeganaALaMaquina();     
-         dispatch({type: GANO_JUGADOR_UNO_VS_MAQUINA, payload: jugadorGanoJugada});   
-        }
-    },[state.jugadorUno.jugadaActual, state.modo]);
-
-    const jugadaLeganaALaMaquina = () => {
-      return winstTo[state.jugadorUno.jugadaActual.name]?.gana.includes(jugadas[jugadaAleatoria(jugadas.length - 1)])
-    }
-    
     const jugadaAleatoria = (max) => {
         return Math.floor(Math.random() * max) + 0;
     }
 
+    useEffect(() => {
+        if(esJugadorUno && realizoJugada ) {
+         const jugadaMaquina = listItemsImages[jugadaAleatoria(jugadas.length - 1)];
+         jugadaActualMaquina.current = jugadaMaquina;
+         dispatch(jugadaSeleccionadaMaquina(jugadaMaquina.image, jugadaMaquina.name))   
+         const jugadorGanoJugada = jugadaLeganaALaMaquina();   
+         if(hayEmpateJugadorVsMaquina()) {
+            dispatch(empateVsMaquina(true));
+            return;
+         }  
+         dispatch({type: GANO_JUGADOR_UNO_VS_MAQUINA, payload: jugadorGanoJugada});   
+        }
+    },[state.jugadorUno.jugadaActual, state.modo]);
+
+    const hayEmpateJugadorVsMaquina = () => {
+        return state.jugadorUno.jugadaActual.name ===  jugadaActualMaquina.current.name
+    }
+
+    const jugadaLeganaALaMaquina = () => {  
+      return winstTo[state.jugadorUno.jugadaActual.name]?.gana.includes(jugadaActualMaquina.current.name)
+    }
+    
     const value = {
         state,
+        puntosGanadosJugadorUno: state.jugadorUno.ganados,
+        puntosPerdidosJugadorUno: state.jugadorUno.perdidos,
+        empatados: state.empates,
+        jugadorMaquina: state.maquina.jugadaActual,
+        jugadorUno: state.jugadorUno.jugadaActual,
         dispatch,
     }
 

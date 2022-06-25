@@ -1,6 +1,6 @@
 import { MODO } from "constants/enums"
 import { initialState } from ".";
-import { MODO_JUEGO, JUGADA_SELECCIONADA, REINICIAR_JUEGO,  GANO_JUGADOR_UNO_VS_MAQUINA } from "./types"
+import { MODO_JUEGO, JUGADA_SELECCIONADA, REINICIAR_JUEGO,  GANO_JUGADOR_UNO_VS_MAQUINA, EMPATE_VS_MAQUINA, JUGADA_MAQUINA } from "./types"
 
 export const gameReducer = (state, {type, payload}) => {
     const modo = state.modo === MODO.JUGADOR_UNO ? "jugadorUno" : "jugadorDos"; 
@@ -13,7 +13,7 @@ export const gameReducer = (state, {type, payload}) => {
         case JUGADA_SELECCIONADA:
             return {
                 ...state,
-                [modo]: {...state[modo], jugadaActual: { ...state.jugadaActual, image: payload.imagenJugada, name: payload.nombreJugada} }
+                [modo]: {...state[modo], jugadaActual: { ...state.jugadorUno.jugadaActual, image: payload.imagenJugada, name: payload.nombreJugada} }
             }
         case GANO_JUGADOR_UNO_VS_MAQUINA:  
             let puntosGanados = 0;
@@ -26,11 +26,24 @@ export const gameReducer = (state, {type, payload}) => {
                 puntosPerdidos = 1;
             }
 
-            console.log(puntosGanados, puntosPerdidos)
             return {
                 ...state,
                 [modo]: {...state[modo], ganados: state[modo].ganados + puntosGanados, perdidos: state[modo].perdidos + puntosPerdidos} 
             }
+        case EMPATE_VS_MAQUINA:
+            let puntosEmpate = 0;
+            if(payload){
+                puntosEmpate = 1;
+            }
+            return {
+                ...state,
+                empates: state.empates + puntosEmpate
+            }
+        case JUGADA_MAQUINA:
+                return {
+                    ...state,
+                    maquina: {jugadaActual: {...state.maquina.jugadaActual, image: payload.imagenJugada, name: payload.nombreJugada} }
+                }
         case REINICIAR_JUEGO:      
             return initialState;
         default:

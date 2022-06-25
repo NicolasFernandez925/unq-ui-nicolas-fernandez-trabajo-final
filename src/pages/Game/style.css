@@ -20,7 +20,7 @@
     font-weight: 500;
 }
 
-.image_selected-user-one{
+.image_selected{
     height: 100%;
     width: 100%;
     border-radius: 100%;
@@ -30,6 +30,29 @@
     font-size: 25px;
     color: var(--color-main-white);
     font-weight: 500;
+}
+
+.puntos_ganados {
+    color: green;
+}
+
+.puntos_perdidos{
+    color: red;
+}
+
+.puntos_empatados{
+    color: var(--color-main-white);
+}
+
+.text_ganados, .text_empatados, .text-perdidos {
+    color: var(--color-main-white);
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.puntos_ganados, .puntos_perdidos, .puntos_empatados{
+    font-weight: 500;
+    font-size: 35px;
 }
 
 @media (max-width: 1280px) {
