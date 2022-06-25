@@ -18,7 +18,7 @@ const CustomModal = (props) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Rules
+          Reglas
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -76,7 +76,7 @@ const CustomModal = (props) => {
           </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="dark" onClick={props.onHide}>Close</Button>
+        <Button variant="dark" onClick={props.onHide}>Cerrar</Button>
       </Modal.Footer>
     </Modal>
   )

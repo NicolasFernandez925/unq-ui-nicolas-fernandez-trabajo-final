@@ -1,18 +1,16 @@
-import {createContext, useContext, useReducer} from 'react'
+import { jugadas } from 'constants';
+import { winstTo } from 'constants';
+import { MODO } from 'constants/enums';
+import {createContext, useContext, useEffect, useReducer} from 'react'
 import { gameReducer } from './gameReducer'
-
-/*const jugada = {
-    nombreJugada: 'tijera',
-    imagen: 'tijer.png',
-};
-*/
-  
+import { GANO_JUGADOR_UNO_VS_MAQUINA } from './types';
 
 export const initialState = {
     modo: "",
     mensajeGanador: "",
     empates: 0,
     jugadorUno: {
+        perdidos: 0,
         ganados: 0,
         nombre: '',
         jugadaActual: {},
@@ -33,10 +31,27 @@ export const GameProvider = ({children}) => {
 
     const [state, dispatch] = useReducer(gameReducer, initialState);
 
+    const realizoJugada = Object.keys(state.jugadorUno.jugadaActual).length !== 0;
+    const esJugadorUno = state.modo === MODO.JUGADOR_UNO;
+
+    useEffect(() => {
+        if(esJugadorUno && realizoJugada ) {
+         const jugadorGanoJugada = jugadaLeganaALaMaquina();     
+         dispatch({type: GANO_JUGADOR_UNO_VS_MAQUINA, payload: jugadorGanoJugada});   
+        }
+    },[state.jugadorUno.jugadaActual, state.modo]);
+
+    const jugadaLeganaALaMaquina = () => {
+      return winstTo[state.jugadorUno.jugadaActual.name]?.gana.includes(jugadas[jugadaAleatoria(jugadas.length - 1)])
+    }
+    
+    const jugadaAleatoria = (max) => {
+        return Math.floor(Math.random() * max) + 0;
+    }
 
     const value = {
         state,
-        dispatch
+        dispatch,
     }
 
     return(

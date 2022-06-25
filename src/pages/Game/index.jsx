@@ -1,11 +1,11 @@
-import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
-import { useGame } from 'context/Game'
+import React from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { useGame } from 'context/Game';
+import { listItemsImages } from 'constants';
+import { jugadaSeleccionada, reiniciarJuego } from 'context/Game/action';
 
 import "./style.css"
-import { listItemsImages } from 'constants'
-import { jugadaSeleccionada, reiniciarJuego } from 'context/Game/action'
 
 const Game = () => {
 
@@ -23,7 +23,7 @@ const Game = () => {
 
   return (
     <Container fluid="lg">
-        <span role='button' onClick={handleGoBack} className='btn_go-back'>Go back</span>
+        <span role='button' onClick={handleGoBack} className='btn_go-back'>Volver</span>
         <Row className="d-flex justify-content-center align-items-center">
           <Col xs={5} lg={2}>
             <div className='selected-image'>
@@ -39,13 +39,13 @@ const Game = () => {
         </Row>
         <Row className="d-flex justify-content-center align-items-center mt-5">
           <Col xs={2} className='text-center'>
-            <div><p className='m-0 text-white'>Won</p></div>
+            <div><p className='m-0 text-white'>Ganados</p></div>
           </Col>
           <Col xs={2}className='text-center'>
-              <div><p className='m-0 text-white'>Tied</p></div>
+              <div><p className='m-0 text-white'>Empatados</p></div>
           </Col>        
           <Col xs={2}className='text-center'>
-            <div><p className='m-0 text-white'>Lost</p></div>   
+            <div><p className='m-0 text-white'>Perdidos</p></div>   
           </Col>
         </Row>
         <Row className="d-flex justify-content-center container_images-selected">

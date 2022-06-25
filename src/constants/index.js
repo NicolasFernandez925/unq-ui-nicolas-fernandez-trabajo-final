@@ -12,3 +12,21 @@ export const listItemsImages = [
     {image: Spock, name: JUGADA.SPOCK},
     {image: Piedra, name: JUGADA.PIEDRA},
 ]
+
+export const jugadas = [
+    JUGADA.TIJERA,
+    JUGADA.LAGARTO,
+    JUGADA.PAPEL,
+    JUGADA.SPOCK,
+    JUGADA.PIEDRA,
+]
+
+export const winstTo = {
+    [JUGADA.TIJERA]: { gana: [JUGADA.PAPEL, JUGADA.LAGARTO], pierde: [JUGADA.PIEDRA, JUGADA.SPOCK]},
+    [JUGADA.LAGARTO]: { gana: [JUGADA.PAPEL, JUGADA.SPOCK], pierde: [JUGADA.TIJERA, JUGADA.PIEDRA]},
+    [JUGADA.SPOCK]: { gana: [JUGADA.TIJERA, JUGADA.PIEDRA], pierde: [JUGADA.PAPEL, JUGADA.LAGARTO]},
+    [JUGADA.PAPEL]: { gana: [JUGADA.PIEDRA, JUGADA.SPOCK], pierde: [JUGADA.TIJERA, JUGADA.LAGARTO]},
+    [JUGADA.PIEDRA]: { gana: [JUGADA.TIJERA, JUGADA.LAGARTO], pierde: [JUGADA.PAPEL, JUGADA.SPOCK]},
+}
+
+
