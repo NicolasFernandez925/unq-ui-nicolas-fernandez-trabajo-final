@@ -2,17 +2,16 @@ import {createContext, useContext, useReducer} from 'react'
 
 const initialState = {
     mode: "",
+    winningMessage: "",
     empates: 0,
     jugadorOne: {
         ganados: 0,
         nombre: '',
-        imageProfile: '',
         jugadaActual: {},
     },
     jugadorTwo: {
         ganados: 0,
         nombre: '',
-        imageProfile: '',
         jugadaActual: {},
     },
     maquina: {
