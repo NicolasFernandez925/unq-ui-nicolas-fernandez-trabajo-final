@@ -51,6 +51,7 @@
     .button_select-player {
       padding: 10px 10px;
       font-size: 14px;   
+      width: 200px!important;
     }
     .btn_read-rules{
       font-size: 15px;

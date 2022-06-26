@@ -39,10 +39,10 @@ const Home = () => {
           <h2 className='text-center text_select-mode'>Seleccionar modo</h2>
         </Row>
         <Row className='d-flex justify-content-center align-items-center'>
-            <Col xs={4} lg={2}  className='d-flex justify-content-center'> 
+            <Col xs={5} lg={2}  className='d-flex justify-content-center'> 
                 <button onClick={handleOnePlayer} className='button_select-player w-100' type='button'>1 jugador</button>
             </Col>
-            <Col xs={4} lg={2}  className='d-flex justify-content-center'>          
+            <Col xs={5} lg={2}  className='d-flex justify-content-center'>          
                 <button onClick={handleTwoPlayer} className='button_select-player w-100' type='button'>2 jugadores</button>
             </Col>
          
