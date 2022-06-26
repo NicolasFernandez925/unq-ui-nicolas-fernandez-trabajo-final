@@ -48,6 +48,7 @@ export const gameReducer = (state, {type, payload}) => {
         case JUGAR_REVANCHA:
             return {
                 ...state,
+                descripcionVictoria: '',
                 jugadorUno: {...state.jugadorUno, jugadaActual: {} },
                 jugadorDos: {...state.jugadorDos, jugadaActual: {} }
             }
