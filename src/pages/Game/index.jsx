@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useGame } from 'context/Game';
-import { listItemsImages } from 'constants';
 import { jugadaSeleccionada, jugadaSeleccionadaJugadorDos, jugarRevancha, reiniciarJuego, seleccionarModo } from 'context/Game/action';
 import { MODO } from 'constants/enums';
 import "./style.css"
 import ScoreDetails from 'components/Game/ScoreDetails';
+import GameItem from 'components/Game/GameItem';
+import { listaDeJugadas } from 'constants';
+import SelectedPlay from 'components/Game/SelectedPlay';
 
 const Game = () => {
 
@@ -67,7 +69,7 @@ const Game = () => {
     } 
   }
 
-  const mostrarNombreJugadaSeleccionada = (nombreJugadaUno, nombrejugadaDos, mensajeJugadaLista = '') => {
+  const mostrarNombreJugadaSeleccionada = (nombreJugadaUno, nombrejugadaDos, mensajeJugadaLista) => {
     if(state.modo === MODO.JUGADOR_DOS) {
       if(ambosJugadoresRealizaronJugada()) {
         return nombreJugadaUno
@@ -96,33 +98,29 @@ const Game = () => {
           <button type='button' onClick={handleReset} className='btn_reiniciar-partida'>Reiniciar</button>
         </div>    
         <Row className="d-flex justify-content-center align-items-center">
-          <Col xs={5} lg={2}>   
-              <p className='name_selected'>JUGADOR 1</p>   
-              {
-                jugadaActualJugadorUno?.image ? 
-                    <div>                 
-                      <p className='name_selected'>{mostrarNombreJugadaSeleccionada(jugadaActualJugadorUno.name, jugadaActualJugadorUno.name, 'Jugador 1 listo')}</p>
-                     
-                      <img className='image_selected' src={mostrarJugadaDelJugador(jugadaActualJugadorUno?.image, jugadaActualJugadorUno?.image)} alt="" />
-                    </div>
-
-                    : <div className='selected-image'></div>   
-              }
+          <Col xs={5} lg={2}>      
+              <SelectedPlay 
+                  conditionToShow={jugadaActualJugadorUno?.image}
+                  mostrarNombreJugadaSeleccionada={mostrarNombreJugadaSeleccionada}
+                  mostrarJugadaDelJugador={mostrarJugadaDelJugador}
+                  namePlayer={jugadorUno.nombre}
+                  messageReady={'Jugador 1 listo'}
+                  jugadorUno={jugadaActualJugadorUno}
+                  jugadorDos={jugadaActualJugadorUno}
+              />
           </Col>
           <Col xs={2} lg={1} className='text-center'>
               <span className='text_vs'>VS</span>
           </Col>        
           <Col xs={5} lg={2}>  
-              <p className='name_selected'>{state.modo === MODO.JUGADOR_DOS ? "JUGADOR 2" : "MAQUINA"}</p>        
-              {
-                jugadorMaquina?.image || jugadaActualJugadorDos?.image ? 
-                <div>                 
-                    <p className='name_selected'>{mostrarNombreJugadaSeleccionada(jugadaActualJugadorDos.name, jugadorMaquina.name)}</p>
-                    <img className='image_selected' src={mostrarJugadaDelJugador(jugadaActualJugadorDos?.image , jugadorMaquina?.image)} alt="" />
-                </div>
-
-                : <div className='selected-image'></div>         
-              }         
+              <SelectedPlay 
+                  conditionToShow={jugadorMaquina?.image || jugadaActualJugadorDos?.image}
+                  mostrarNombreJugadaSeleccionada={mostrarNombreJugadaSeleccionada}
+                  mostrarJugadaDelJugador={mostrarJugadaDelJugador}
+                  namePlayer={state.modo === MODO.JUGADOR_DOS ? jugadorDos.nombre : state.maquina.nombre}
+                  jugadorUno={jugadaActualJugadorDos}
+                  jugadorDos={jugadorMaquina}
+              />      
           </Col>
         </Row>
             <ScoreDetails 
@@ -132,6 +130,7 @@ const Game = () => {
                 puntosGanadosJugadorUno={puntosGanadosJugadorUno} 
                 empatados={empatados} 
                 puntosPerdidosJugadorUno={puntosPerdidosJugadorUno}
+                
             />
         <Row className="d-flex justify-content-center mt-5">
           <Col lg={8} className="d-flex justify-content-center flex-wrap">
@@ -142,12 +141,13 @@ const Game = () => {
               }
             </div>       
           </Col>
+        
         </Row>
         <Row className="d-flex justify-content-center container_images-selected">
           <Col lg={8} className="d-flex justify-content-center flex-wrap">
             {
-              listItemsImages.map(imagesGame => (
-                <img onClick={() => handleSelectedImageGame(imagesGame.image, imagesGame.name)} className='image-game rotate' src={imagesGame.image} alt='img-game' key={crypto.randomUUID()} />
+              listaDeJugadas.map(imagesGame => (
+                <GameItem key={crypto.randomUUID()} handleSelectedImageGame={handleSelectedImageGame} item={imagesGame}/>
               ))
             }
           </Col>

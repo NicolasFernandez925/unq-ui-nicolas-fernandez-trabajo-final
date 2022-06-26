@@ -55,7 +55,7 @@ export const gameReducer = (state, {type, payload}) => {
         case JUGADA_MAQUINA:
                 return {
                     ...state,
-                    maquina: {jugadaActual: {...state.maquina.jugadaActual, image: payload.imagenJugada, name: payload.nombreJugada} }
+                    maquina: { ...state.maquina, jugadaActual: {...state.maquina.jugadaActual, image: payload.imagenJugada, name: payload.nombreJugada} }
                 }
         case DESCRIPCION_VICTORIA:
                 return {

@@ -1,5 +1,5 @@
 import { jugadas } from 'constants';
-import { listItemsImages } from 'constants';
+import { listaDeJugadas } from 'constants';
 import { winstTo } from 'constants';
 import { MODO } from 'constants/enums';
 import {createContext, useContext, useEffect, useReducer, useRef} from 'react'
@@ -46,7 +46,7 @@ export const GameProvider = ({children}) => {
 
     useEffect(() => {
         if(modoJugadorUno && realizoJugadaJugadorUno ) {
-         const jugadaMaquina = listItemsImages[jugadaAleatoria(jugadas.length - 1)];
+         const jugadaMaquina = listaDeJugadas[jugadaAleatoria(jugadas.length - 1)];
          jugadaActualMaquina.current = jugadaMaquina;
          dispatch(jugadaSeleccionadaMaquina(jugadaMaquina.image, jugadaMaquina.name))   
          const jugadorGanoJugada = jugadorUnoLeGanaAOtroJugador(state.jugadorUno.jugadaActual.name, jugadaActualMaquina.current.name);   

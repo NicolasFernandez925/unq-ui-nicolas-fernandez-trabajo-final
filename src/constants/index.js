@@ -5,7 +5,7 @@ import Spock from 'assets/spock.png'
 import Piedra from 'assets/piedra.png'
 import { JUGADA } from './enums'
 
-export const listItemsImages = [
+export const listaDeJugadas = [
     {image: Tijera, name: JUGADA.TIJERA},
     {image: Lagarto, name: JUGADA.LAGARTO},
     {image: Papel, name: JUGADA.PAPEL},
