@@ -1,157 +1,168 @@
 .image-game {
-    border-radius: 100%;
-    margin: 20px 10px;
-    cursor: pointer;
-  
+  border-radius: 100%;
+  margin: 20px 10px;
+  cursor: pointer;
 }
 
-.selected-image{
-    border-radius: 50%;
-    border: 3px solid var(--color-main-white);
-    height: 180px;
+.selected-image {
+  border-radius: 50%;
+  border: 3px solid var(--color-main-white);
+  height: 180px;
 }
 
-.container_images-selected{
-    margin-top: 20px!important;
+.container_images-selected {
+  margin-top: 20px !important;
 }
 
-.btn_go-back, .btn_reiniciar-partida, .btn_reiniciar-revancha{
-    color: var(--color-main-white);
-    font-weight: 500;
-    border: 1px solid rgb(95, 95, 95);
-    background-color: transparent;
-    padding: 4px 10px;
-    letter-spacing: 2px;
-    border-radius: 3px;
-    transition: border 500ms ease;
+.btn_go-back,
+.btn_reiniciar-partida,
+.btn_reiniciar-revancha {
+  color: var(--color-main-white);
+  font-weight: 500;
+  border: 1px solid rgb(95, 95, 95);
+  background-color: transparent;
+  padding: 4px 10px;
+  letter-spacing: 2px;
+  border-radius: 3px;
+  transition: border 500ms ease;
 }
-.btn_reiniciar-revancha:hover{
-    border: 1px solid var( --bg-red-50);
-}
-
-.btn_reiniciar-partida:hover{
-    border: 1px solid var(--bg-green-50);
+.btn_reiniciar-revancha:hover {
+  border: 1px solid var(--bg-red-50);
 }
 
-.btn_go-back:hover{
-    border: 1px solid var(--bg-blue-50);
+.btn_reiniciar-partida:hover {
+  border: 1px solid var(--bg-green-50);
 }
 
-.btn_reiniciar-partida{
-    margin-left: 15px;
+.btn_go-back:hover {
+  border: 1px solid var(--bg-blue-50);
 }
 
-.image_selected{
-    height: 100%;
-    width: 100%;
-    border-radius: 100%;
+.btn_reiniciar-partida {
+  margin-left: 15px;
 }
 
-.text_vs{
-    font-size: 25px;
-    color: var(--color-main-white);
-    font-weight: 500;
+.image_selected {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+}
+
+.text_vs {
+  font-size: 25px;
+  color: var(--color-main-white);
+  font-weight: 500;
 }
 
 .puntos_ganados {
-    color: var(--bg-green-50);
+  color: var(--bg-green-50);
 }
 
-.puntos_perdidos{
-    color: var(--bg-red-50);
+.puntos_perdidos {
+  color: var(--bg-red-50);
 }
 
-.puntos_empatados{
-    color: var(--color-main-white);
+.puntos_empatados {
+  color: var(--color-main-white);
 }
 
-.text_ganados, .text_empatados, .text-perdidos {
-    color: var(--color-main-white);
-    font-weight: 500;
-    font-size: 20px;
-    letter-spacing: 2px;
+.text_ganados,
+.text_empatados,
+.text-perdidos {
+  color: var(--color-main-white);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 2px;
 }
 
-.descripcion_victoria{
-    color: var(--bg-green-50);
-    font-weight: 500;
-    font-size: 20px;
+.descripcion_victoria {
+  color: var(--bg-green-50);
+  font-weight: 500;
+  font-size: 20px;
 }
 
-.puntos_ganados, .puntos_perdidos, .puntos_empatados{
-    font-weight: 500;
-    font-size: 35px;
+.puntos_ganados,
+.puntos_perdidos,
+.puntos_empatados {
+  font-weight: 500;
+  font-size: 35px;
 }
 
-.name_selected{
-    color: var(--color-main-white);
-    font-weight: 500;
-    text-align: center;
-    letter-spacing: 2px;
-    font-size: 20px;
+.name_selected {
+  color: var(--color-main-white);
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 2px;
+  font-size: 20px;
 }
 
 @media (max-width: 1280px) {
-    .selected-image{
-        height: 160px;
-    }
+  .selected-image {
+    height: 160px;
+  }
 }
 
 @media (max-width: 1024px) {
-    .selected-image{
-        height: 140px;
-    }
-    .image-game {   
-        height: 100px;
-    }
+  .selected-image {
+    height: 140px;
+  }
+  .image-game {
+    height: 100px;
+  }
 }
 
 @media (max-width: 768px) {
-    .menu_game{
-        margin-bottom: 50px;
-        margin-left: 20px;
-    }
-    .selected-image {
-        height: 200px;
-    }
+  .menu_game {
+    margin-bottom: 50px;
+    margin-left: 20px;
+  }
+  .selected-image {
+    height: 200px;
+  }
 }
 
 @media (max-width: 640px) {
-    .container_images-selected{
-        margin-top: 20px!important;
-    }
-    .image-game {   
-        height: 80px;
-    }
-    .selected-image{
-        height: 130px;
-    }
-    .btn_go-back{
-       display: block;
-    }
-    .text_ganados, .text_empatados, .text-perdidos {
-        font-size: 13px;
-    }
-    .puntos_ganados, .puntos_perdidos, .puntos_empatados{
-        font-size: 20px;
-    }
-    .descripcion_victoria {
-        font-size: 13px;
-    }
-    .name_selected {
-        font-size: 14px;
-    }
-    .btn_go-back, .btn_reiniciar-partida, .btn_reiniciar-revancha{
-       font-size: 13px;
-    }
-   
-    .menu_game {
-        padding: 25px 0px;
-    }
+  .container_images-selected {
+    margin-top: 20px !important;
+  }
+  .image-game {
+    height: 80px;
+  }
+  .selected-image {
+    height: 130px;
+  }
+  .btn_go-back {
+    display: block;
+  }
+  .text_ganados,
+  .text_empatados,
+  .text-perdidos {
+    font-size: 13px;
+  }
+  .puntos_ganados,
+  .puntos_perdidos,
+  .puntos_empatados {
+    font-size: 20px;
+  }
+  .descripcion_victoria {
+    font-size: 13px;
+  }
+  .name_selected {
+    font-size: 14px;
+  }
+  .btn_go-back,
+  .btn_reiniciar-partida,
+  .btn_reiniciar-revancha {
+    font-size: 13px;
+  }
+
+  .menu_game {
+    padding: 25px 0px;
+  }
 }
 
-@media (max-width: 375px){
-    .image-game {
-        height: 60px;
-    }
+@media (max-width: 375px) {
+  .image-game {
+    height: 60px;
+  }
 }

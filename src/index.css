@@ -1,20 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;400;500;700&display=swap");
 
 body {
   margin: 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   box-sizing: border-box;
-  padding: 0px
+  padding: 0px;
 }
 
 :root {
-  --bg-main-color-100 :#282828;
+  --bg-main-color-100: #282828;
   --bg-red-50: #ff8989;
   --bg-green-50: #adff8c;
   --bg-green-10: #e6ffdc;
   --bg-blue-50: #92baff;
   --bg-blue-10: #d6e5ff;
-  --color-main-white: #ffff
+  --color-main-white: #ffff;
 }
 
 .container-home {

@@ -1,21 +1,21 @@
 .image-logo-game {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
-.text_select-mode{
-    color:var(--color-main-white);
-    letter-spacing: 1px;
+.text_select-mode {
+  color: var(--color-main-white);
+  letter-spacing: 1px;
 }
 
 .button_select-player {
-    padding: 10px 20px;
-    color: var(--bg-main-color-100);
-    border-radius: 4px;
-    font-weight: 500;   
-    font-size: 18px;
-    letter-spacing: 1px;
+  padding: 10px 20px;
+  color: var(--bg-main-color-100);
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 1px;
 }
-.btn_read-rules{
+.btn_read-rules {
   color: var(--color-main-white);
   display: flex;
   justify-content: center;
@@ -25,36 +25,34 @@
 }
 
 .button_select-player:hover {
-    transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
-.button_select-player{
-
-    background-color: var(--bg-blue-10); 
-    border: 2px solid var(--bg-blue-50);
+.button_select-player {
+  background-color: var(--bg-blue-10);
+  border: 2px solid var(--bg-blue-50);
 }
 
 .rotate {
-    animation: rotation 16s infinite linear;
-  }
-  
-  @keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(359deg);
-    }
-  }
+  animation: rotation 16s infinite linear;
+}
 
-  @media (max-width: 640px) {
-    .button_select-player {
-      padding: 10px 10px;
-      font-size: 14px;   
-      width: 200px!important;
-    }
-    .btn_read-rules{
-      font-size: 15px;
-    }
-    
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .button_select-player {
+    padding: 10px 10px;
+    font-size: 14px;
+    width: 200px !important;
+  }
+  .btn_read-rules {
+    font-size: 15px;
+  }
+}

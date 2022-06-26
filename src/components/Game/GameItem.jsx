@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
 
-const GameItem = ({handleSelectedImageGame, item}) => {
+const GameItem = ({ handleSelectedImageGame, item }) => {
   return (
-    <img onClick={() => handleSelectedImageGame(item.image, item.name)} className='image-game rotate' src={item.image} alt='img-game'/>
-  )
-}
+    <img
+      onClick={() => handleSelectedImageGame(item.image, item.name)}
+      className="image-game rotate"
+      src={item.image}
+      alt="img-game"
+    />
+  );
+};
 
-export default GameItem
+export default GameItem;
