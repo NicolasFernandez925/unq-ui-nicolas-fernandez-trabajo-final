@@ -12,10 +12,10 @@
 }
 
 .container_images-selected{
-    margin-top: 100px!important;
+    margin-top: 20px!important;
 }
 
-.btn_go-back, .btn_reiniciar-partida{
+.btn_go-back, .btn_reiniciar-partida, .btn_reiniciar-revancha{
     color: var(--color-main-white);
     font-weight: 500;
     border: 1px solid rgb(95, 95, 95);
@@ -25,6 +25,10 @@
     border-radius: 3px;
     transition: border 500ms ease;
 }
+.btn_reiniciar-revancha:hover{
+    border: 1px solid var( --bg-red-50);
+}
+
 .btn_reiniciar-partida:hover{
     border: 1px solid var(--bg-green-50);
 }
@@ -33,7 +37,7 @@
     border: 1px solid var(--bg-blue-50);
 }
 
-.btn_reiniciar-partida{
+.btn_reiniciar-partida, .btn_reiniciar-revancha{
     margin-left: 15px;
 }
 

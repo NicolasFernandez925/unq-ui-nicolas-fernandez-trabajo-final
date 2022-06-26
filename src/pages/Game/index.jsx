@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useGame } from 'context/Game';
 import { listItemsImages } from 'constants';
 
-import { jugadaSeleccionada, jugadaSeleccionadaJugadorDos, reiniciarJuego, seleccionarModo } from 'context/Game/action';
+import { jugadaSeleccionada, jugadaSeleccionadaJugadorDos, jugarRevancha, reiniciarJuego, seleccionarModo } from 'context/Game/action';
 
 import "./style.css"
 import { MODO } from 'constants/enums';
@@ -53,11 +53,16 @@ const Game = () => {
 
   }, [location.search, dispatch, activate])
 
+  const handleRevancha = () => {
+    dispatch(jugarRevancha())
+  }
+
   return (
     <Container fluid="lg">
         <div className='menu_game d-flex'>
-          <button type='button' onClick={handleGoBack} className='btn_go-back'>Volver</button>
+          <button type='button' onClick={handleGoBack} className='btn_go-back'>Inicio</button>
           <button type='button' onClick={handleReset} className='btn_reiniciar-partida'>Reiniciar</button>
+          <button type='button' onClick={handleRevancha} className='btn_reiniciar-revancha'>Revancha</button>
         </div>    
         <Row className="d-flex justify-content-center align-items-center">
           <Col xs={5} lg={2}>   
