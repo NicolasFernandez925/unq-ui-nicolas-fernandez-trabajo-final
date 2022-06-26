@@ -98,7 +98,7 @@ const Game = () => {
           <button type='button' onClick={handleReset} className='btn_reiniciar-partida'>Reiniciar</button>
         </div>    
         <Row className="d-flex justify-content-center align-items-center">
-          <Col xs={5} lg={2}>      
+          <Col xs={5} md={4} lg={2}>      
               <SelectedPlay 
                   conditionToShow={jugadaActualJugadorUno?.image}
                   mostrarNombreJugadaSeleccionada={mostrarNombreJugadaSeleccionada}
@@ -109,10 +109,10 @@ const Game = () => {
                   jugadorDos={jugadaActualJugadorUno}
               />
           </Col>
-          <Col xs={2} lg={1} className='text-center'>
+          <Col xs={2} md={2}  lg={1} className='text-center'>
               <span className='text_vs'>VS</span>
           </Col>        
-          <Col xs={5} lg={2}>  
+          <Col xs={5} md={4}  lg={2}>  
               <SelectedPlay 
                   conditionToShow={jugadorMaquina?.image || jugadaActualJugadorDos?.image}
                   mostrarNombreJugadaSeleccionada={mostrarNombreJugadaSeleccionada}

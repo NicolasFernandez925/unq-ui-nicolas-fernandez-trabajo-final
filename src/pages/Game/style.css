@@ -73,7 +73,7 @@
 }
 
 .descripcion_victoria{
-    color: var(--color-main-white);
+    color: var(--bg-green-50);
     font-weight: 500;
     font-size: 20px;
 }
@@ -103,6 +103,16 @@
     }
     .image-game {   
         height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu_game{
+        margin-bottom: 50px;
+        margin-left: 20px;
+    }
+    .selected-image {
+        height: 200px;
     }
 }
 
@@ -137,5 +147,11 @@
    
     .menu_game {
         padding: 25px 0px;
+    }
+}
+
+@media (max-width: 375px){
+    .image-game {
+        height: 60px;
     }
 }
