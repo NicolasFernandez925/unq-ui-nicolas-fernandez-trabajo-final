@@ -11,6 +11,7 @@ import {
   SUMAR_PUNTOS_GANADOR_MULTIPLAYER,
   EMPATE,
   JUGAR_REVANCHA,
+  RONDAS,
 } from "./types";
 
 export const gameReducer = (state, { type, payload }) => {
@@ -100,6 +101,11 @@ export const gameReducer = (state, { type, payload }) => {
             name: payload.nombreJugada,
           },
         },
+      };
+    case RONDAS:
+      return {
+        ...state,
+        rondas: payload,
       };
     case DESCRIPCION_VICTORIA:
       return {

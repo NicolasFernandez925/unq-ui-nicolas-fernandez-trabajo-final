@@ -18,6 +18,7 @@ export const initialState = {
   modo: "",
   descripcionVictoria: "",
   empates: 0,
+  rondas: 0,
   jugadorUno: {
     perdidos: 0,
     ganados: 0,

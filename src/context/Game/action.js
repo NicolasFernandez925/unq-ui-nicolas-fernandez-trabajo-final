@@ -7,6 +7,7 @@ import {
   JUGADA_SELECCIONADA_JUGADOR_DOS,
   EMPATE,
   JUGAR_REVANCHA,
+  RONDAS,
 } from "./types";
 
 export const seleccionarModo = (mode) => {
@@ -60,5 +61,11 @@ export const reiniciarJuego = () => {
 export const jugarRevancha = () => {
   return {
     type: JUGAR_REVANCHA,
+  };
+};
+
+export const rondas = () => {
+  return {
+    type: RONDAS,
   };
 };
