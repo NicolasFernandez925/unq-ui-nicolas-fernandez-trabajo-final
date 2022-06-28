@@ -1,24 +1,46 @@
 import React from "react";
+import Tijera from "assets/tijera.png";
+import Lagarto from "assets/lagarto.png";
+import Papel from "assets/papel.png";
+import Spock from "assets/spock.png";
+import Piedra from "assets/piedra.png";
+import ItemRule from "./ItemRule";
 
-const ItemRule = ({ image, nameJugada, gana, pierde }) => {
+const Rule = () => {
   return (
-    <div className="d-flex justify-content-between align-items-center">
-      <div className="d-flex align-items-center">
-        <img className="image-game-rules" src={image} alt="img-game" />
-        <p className="m-0">{nameJugada}</p>
-      </div>
-      <div>
-        <p className="m-0">
-          <span className="text-gana">Gana: </span>
-          {gana[0]}, {gana[1]}
-        </p>
-        <p className="m-0">
-          <span className="text-pierde">Pierde: </span>
-          {pierde[0]}, {pierde[1]}
-        </p>
-      </div>
-    </div>
+    <>
+      <ItemRule
+        image={Tijera}
+        nameJugada="Tijera"
+        gana={["Papel", "lagarto"]}
+        pierde={["Piedra", "spock"]}
+      />
+      <ItemRule
+        image={Lagarto}
+        nameJugada="Lagarto"
+        gana={["Papel", "Spock"]}
+        pierde={["Tijera", "Piedra"]}
+      />
+      <ItemRule
+        image={Spock}
+        nameJugada="Spock"
+        gana={["Tijera", "Piedra"]}
+        pierde={["Papel", "Lagarto"]}
+      />
+      <ItemRule
+        image={Papel}
+        nameJugada="Papel"
+        gana={["Piedra", "Spock"]}
+        pierde={["Tijera", "Lagarto"]}
+      />
+      <ItemRule
+        image={Piedra}
+        nameJugada="Piedra"
+        gana={["Tijera", "Lagarto"]}
+        pierde={["Papel", "Spock"]}
+      />
+    </>
   );
 };
 
-export default ItemRule;
+export default Rule;
