@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGame } from "context/Game";
@@ -15,11 +15,14 @@ import ScoreDetails from "components/Game/ScoreDetails";
 import GameItem from "components/Game/GameItem";
 import { listaDeJugadas } from "constants";
 import SelectedPlay from "components/Game/SelectedPlay";
+import { MODAL_TYPES } from "constants";
+import { useModalGlobal } from "context/Modal";
 
 const Game = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activate, setActivate] = useState(false);
+  const { showModal } = useModalGlobal();
 
   const {
     state,
@@ -40,6 +43,21 @@ const Game = () => {
     dispatch(reiniciarJuego());
     navigate(-1);
   };
+
+  const handleOpenModalEndOfTheGame = useCallback(() => {
+    showModal(MODAL_TYPES.END_OF_THE_GAME, {
+      title: "End of the game",
+    });
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const getMode = params.get("mode");
+    console.log(getMode);
+    if (state.rondas === 0) {
+      handleOpenModalEndOfTheGame();
+    }
+  }, [state.rondas, handleOpenModalEndOfTheGame, location.search]);
 
   const handleSelectedImageGame = (imagesGame, nameImage) => {
     const params = new URLSearchParams(location.search);
@@ -113,17 +131,23 @@ const Game = () => {
 
   return (
     <Container fluid="lg">
-      <div className="menu_game d-flex">
-        <button type="button" onClick={handleGoBack} className="btn_go-back">
-          Inicio
-        </button>
-        <button
-          type="button"
-          onClick={handleReset}
-          className="btn_reiniciar-partida"
-        >
-          Reiniciar
-        </button>
+      <div className="menu_game">
+        <div className=" d-flex">
+          <button type="button" onClick={handleGoBack} className="btn_go-back">
+            Inicio
+          </button>
+          <button
+            type="button"
+            onClick={handleReset}
+            className="btn_reiniciar-partida"
+          >
+            Reiniciar
+          </button>
+        </div>
+
+        <p className="rounds_played mt-4">
+          <span className="fw-bold">Rounds played: {state.rondas}</span>
+        </p>
       </div>
       <Row className="d-flex justify-content-center align-items-center">
         <Col xs={5} md={4} lg={2}>

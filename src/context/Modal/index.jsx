@@ -1,7 +1,8 @@
 import ModalRules from "components/common/Modal/ModalRules";
-import FinishedRound from "components/common/Modal/ModalFinishedRound";
 import { MODAL_TYPES } from "constants";
 import { createContext, useContext, useState } from "react";
+import ModalRounds from "components/common/Modal/ModalRounds";
+import ModalEndOfTheGame from "components/common/Modal/ModaEndOfTheGame";
 
 const initalState = {
   showModal: () => {},
@@ -13,7 +14,8 @@ const ModalContext = createContext(initalState);
 
 const MODAL_COMPONENTS = {
   [MODAL_TYPES.RULES]: ModalRules,
-  [MODAL_TYPES.FINISHED_ROUND]: FinishedRound,
+  [MODAL_TYPES.ROUNDS]: ModalRounds,
+  [MODAL_TYPES.END_OF_THE_GAME]: ModalEndOfTheGame,
 };
 
 export const ModalProvider = ({ children }) => {

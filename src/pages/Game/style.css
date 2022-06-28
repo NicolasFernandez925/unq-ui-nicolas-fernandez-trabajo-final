@@ -14,6 +14,11 @@
   margin-top: 20px !important;
 }
 
+.rounds_played {
+  color: var(--color-main-white);
+  font-size: 18px;
+}
+
 .btn_go-back,
 .btn_reiniciar-partida,
 .btn_reiniciar-revancha {

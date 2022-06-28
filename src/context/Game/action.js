@@ -64,8 +64,9 @@ export const jugarRevancha = () => {
   };
 };
 
-export const rondas = () => {
+export const rondas = (rondas) => {
   return {
     type: RONDAS,
+    payload: rondas,
   };
 };

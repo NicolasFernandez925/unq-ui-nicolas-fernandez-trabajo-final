@@ -12,6 +12,7 @@ import {
   EMPATE,
   JUGAR_REVANCHA,
   RONDAS,
+  RESET_GAME_BUT_NOT_ROUNDS,
 } from "./types";
 
 export const gameReducer = (state, { type, payload }) => {
@@ -61,6 +62,7 @@ export const gameReducer = (state, { type, payload }) => {
           ...state.jugadorDos,
           ganados: state.jugadorDos.ganados + puntosJugadorDos,
         },
+        rondas: state.rondas - 1 < 0 ? 0 : state.rondas - 1,
       };
     case GANO_JUGADOR_UNO_VS_MAQUINA:
       let puntosGanados = 0;
@@ -74,6 +76,7 @@ export const gameReducer = (state, { type, payload }) => {
           ganados: state.jugadorUno.ganados + puntosGanados,
           perdidos: state.jugadorUno.perdidos + puntosPerdidos,
         },
+        rondas: state.rondas - 1 < 0 ? 0 : state.rondas - 1,
       };
     case EMPATE:
       let puntosEmpate = 0;
@@ -82,6 +85,7 @@ export const gameReducer = (state, { type, payload }) => {
       return {
         ...state,
         empates: state.empates + puntosEmpate,
+        rondas: state.rondas - 1 < 0 ? 0 : state.rondas - 1,
       };
     case JUGAR_REVANCHA:
       return {
@@ -102,6 +106,7 @@ export const gameReducer = (state, { type, payload }) => {
           },
         },
       };
+
     case RONDAS:
       return {
         ...state,
@@ -112,8 +117,12 @@ export const gameReducer = (state, { type, payload }) => {
         ...state,
         descripcionVictoria: payload,
       };
+
     case REINICIAR_JUEGO:
-      return initialState;
+      return {
+        ...initialState,
+        rondas: state.rondas,
+      };
     default:
       return state;
   }

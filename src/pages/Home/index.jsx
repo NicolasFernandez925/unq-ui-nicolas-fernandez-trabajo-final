@@ -1,34 +1,25 @@
 import React from "react";
 import ImageGame from "assets/game.png";
 import { Container, Col, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { useModalGlobal } from "context/Modal";
-import { useGame } from "context/Game";
-import { seleccionarModo } from "context/Game/action";
-import { MODO } from "constants/enums";
 import { MODAL_TYPES } from "constants";
 
 import "./style.css";
 
 const Home = () => {
-  const navigate = useNavigate();
-  const { dispatch } = useGame();
   const { showModal } = useModalGlobal();
-
-  const handleOnePlayer = () => {
-    dispatch(seleccionarModo(MODO.JUGADOR_UNO));
-    navigate("/game?mode=singlePlayer");
-  };
-
-  const handleTwoPlayer = () => {
-    dispatch(seleccionarModo(MODO.JUGADOR_DOS));
-    navigate("/game?mode=multiplayer");
-  };
 
   const handleOpenModalReadRules = () => {
     showModal(MODAL_TYPES.RULES, {
       title: "Rules",
       btnClose: "Close",
+    });
+  };
+
+  const handleOpenModalSelectRoundsAndName = (path) => {
+    showModal(MODAL_TYPES.ROUNDS, {
+      title: "Select round",
+      pathRedirect: path,
     });
   };
 
@@ -49,7 +40,9 @@ const Home = () => {
       <Row className="d-flex justify-content-center align-items-center">
         <Col xs={5} md={3} lg={2} className="d-flex justify-content-center">
           <button
-            onClick={handleOnePlayer}
+            onClick={() =>
+              handleOpenModalSelectRoundsAndName("/game?mode=singlePlayer")
+            }
             className="button_select-player w-100"
             type="button"
           >
@@ -58,7 +51,9 @@ const Home = () => {
         </Col>
         <Col xs={5} md={3} lg={2} className="d-flex justify-content-center">
           <button
-            onClick={handleTwoPlayer}
+            onClick={() =>
+              handleOpenModalSelectRoundsAndName("/game?mode=multiplayer")
+            }
             className="button_select-player w-100"
             type="button"
           >

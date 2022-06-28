@@ -46,5 +46,6 @@ export const winstTo = {
 
 export const MODAL_TYPES = {
   RULES: "RULES",
-  FINISHED_ROUND: "FINISHED_ROUND",
+  ROUNDS: "ROUNDS",
+  END_OF_THE_GAME: "END_OF_THE_GAME",
 };

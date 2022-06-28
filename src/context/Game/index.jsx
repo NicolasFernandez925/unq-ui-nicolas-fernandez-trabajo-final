@@ -147,6 +147,7 @@ export const GameProvider = ({ children }) => {
     state,
     puntosGanadosJugadorUno: state.jugadorUno.ganados,
     puntosPerdidosJugadorUno: state.jugadorUno.perdidos,
+    puntosGanadosJugadorDos: state.jugadorDos.ganados,
     empatados: state.empates,
     jugadorMaquina: state.maquina.jugadaActual,
     jugadaActualJugadorUno: state.jugadorUno.jugadaActual,

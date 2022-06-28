@@ -5,14 +5,17 @@ import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { GameProvider } from "context/Game";
 import { ModalProvider } from "context/Modal";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ModalProvider>
+    <BrowserRouter>
       <GameProvider>
-        <App />
+        <ModalProvider>
+          <App />
+        </ModalProvider>
       </GameProvider>
-    </ModalProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
