@@ -7,6 +7,7 @@ import Piedra from "assets/piedra.png";
 import { Button, Modal } from "react-bootstrap";
 
 import "./style.css";
+import ItemRule from "../Rules";
 
 const CustomModal = (props) => {
   return (
@@ -21,76 +22,36 @@ const CustomModal = (props) => {
       </Modal.Header>
       <Modal.Body>
         <div>
-          <div className="d-flex justify-content-between align-items-center">
-            <div className="d-flex align-items-center">
-              <img className="image-game-rules" src={Tijera} alt="img-game" />
-              <p className="m-0">Tijera</p>
-            </div>
-            <div>
-              <p className="m-0">
-                <span className="text-gana">Gana: </span>Papel, lagarto
-              </p>
-              <p className="m-0">
-                <span className="text-pierde">Pierde: </span>Piedra, spock
-              </p>
-            </div>
-          </div>
-          <div className="d-flex justify-content-between align-items-center">
-            <div className="d-flex align-items-center">
-              <img className="image-game-rules" src={Lagarto} alt="img-game" />
-              <p className="m-0">Lagarto</p>
-            </div>
-            <div>
-              <p className="m-0">
-                <span className="text-gana">Gana: </span>Papel, Spock
-              </p>
-              <p className="m-0">
-                <span className="text-pierde">Pierde: </span>Tijera, Piedra
-              </p>
-            </div>
-          </div>
-          <div className="d-flex justify-content-between align-items-center ">
-            <div className="d-flex align-items-center">
-              <img className="image-game-rules" src={Spock} alt="img-game" />
-              <p className="m-0">Spock</p>
-            </div>
-            <div>
-              <p className="m-0">
-                <span className="text-gana">Gana: </span>Tijera, Piedra
-              </p>
-              <p className="m-0">
-                <span className="text-pierde">Pierde: </span>Papel, Lagarto
-              </p>
-            </div>
-          </div>
-          <div className="d-flex justify-content-between align-items-center">
-            <div className="d-flex align-items-center">
-              <img className="image-game-rules" src={Papel} alt="img-game" />
-              <p className="m-0">Papel</p>
-            </div>
-            <div>
-              <p className="m-0">
-                <span className="text-gana">Gana: </span>Piedra, Spock
-              </p>
-              <p className="m-0">
-                <span className="text-pierde">Pierde: </span>Tijera, Lagarto
-              </p>
-            </div>
-          </div>
-          <div className="d-flex justify-content-between align-items-center">
-            <div className="d-flex align-items-center">
-              <img className="image-game-rules" src={Piedra} alt="img-game" />
-              <p className="m-0">Piedra</p>
-            </div>
-            <div>
-              <p className="m-0">
-                <span className="text-gana">Gana: </span>Tijera, lagarto
-              </p>
-              <p className="m-0">
-                <span className="text-pierde">Pierde: </span>Papel, spock
-              </p>
-            </div>
-          </div>
+          <ItemRule
+            image={Tijera}
+            nameJugada="Tijera"
+            gana={["Papel", "lagarto"]}
+            pierde={["Piedra", "spock"]}
+          />
+          <ItemRule
+            image={Lagarto}
+            nameJugada="Lagarto"
+            gana={["Papel", "Spock"]}
+            pierde={["Tijera", "Piedra"]}
+          />
+          <ItemRule
+            image={Spock}
+            nameJugada="Spock"
+            gana={["Tijera", "Piedra"]}
+            pierde={["Papel", "Lagarto"]}
+          />
+          <ItemRule
+            image={Papel}
+            nameJugada="Papel"
+            gana={["Piedra", "Spock"]}
+            pierde={["Tijera", "Lagarto"]}
+          />
+          <ItemRule
+            image={Piedra}
+            nameJugada="Piedra"
+            gana={["Tijera", "Lagarto"]}
+            pierde={["Papel", "Spock"]}
+          />
         </div>
       </Modal.Body>
       <Modal.Footer>
