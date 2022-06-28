@@ -43,3 +43,8 @@ export const winstTo = {
     pierde: [JUGADA.PAPEL, JUGADA.SPOCK],
   },
 };
+
+export const MODAL_TYPES = {
+  RULES: "RULES",
+  FINISHED_ROUND: "FINISHED_ROUND",
+};

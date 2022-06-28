@@ -2,17 +2,18 @@ import React from "react";
 import ImageGame from "assets/game.png";
 import { Container, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useModal } from "context/Modal";
+import { useModalGlobal } from "context/Modal";
 import { useGame } from "context/Game";
 import { seleccionarModo } from "context/Game/action";
 import { MODO } from "constants/enums";
+import { MODAL_TYPES } from "constants";
 
 import "./style.css";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { setModalShow } = useModal();
   const { dispatch } = useGame();
+  const { showModal } = useModalGlobal();
 
   const handleOnePlayer = () => {
     dispatch(seleccionarModo(MODO.JUGADOR_UNO));
@@ -25,7 +26,10 @@ const Home = () => {
   };
 
   const handleOpenModalReadRules = () => {
-    setModalShow((prev) => !prev);
+    showModal(MODAL_TYPES.RULES, {
+      title: "Rules",
+      btnClose: "Close",
+    });
   };
 
   return (

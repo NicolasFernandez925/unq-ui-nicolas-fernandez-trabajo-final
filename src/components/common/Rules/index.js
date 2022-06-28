@@ -6,7 +6,7 @@ import Spock from "assets/spock.png";
 import Piedra from "assets/piedra.png";
 import ItemRule from "./ItemRule";
 
-const Rule = () => {
+const Rules = () => {
   return (
     <>
       <ItemRule
@@ -43,4 +43,4 @@ const Rule = () => {
   );
 };
 
-export default Rule;
+export default Rules;

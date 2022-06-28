@@ -1,31 +1,62 @@
-import CustomModal from "components/common/Modal";
-import { createContext, useContext, useMemo, useState } from "react";
+import ModalRules from "components/common/Modal/ModalRules";
+import FinishedRound from "components/common/Modal/ModalFinishedRound";
+import { MODAL_TYPES } from "constants";
+import { createContext, useContext, useState } from "react";
 
-const ModalContext = createContext();
+const initalState = {
+  showModal: () => {},
+  hideModal: () => {},
+  store: {},
+};
+
+const ModalContext = createContext(initalState);
+
+const MODAL_COMPONENTS = {
+  [MODAL_TYPES.RULES]: ModalRules,
+  [MODAL_TYPES.FINISHED_ROUND]: FinishedRound,
+};
 
 export const ModalProvider = ({ children }) => {
-  const [modalShow, setModalShow] = useState(false);
+  const [store, setStore] = useState();
+  const { modalType, modalProps } = store || {};
 
-  const value = useMemo(() => {
-    return {
-      modalShow,
-      setModalShow,
-    };
-  }, [modalShow, setModalShow]);
+  const showModal = (modalType, modalProps = {}) => {
+    setStore({
+      ...store,
+      modalType,
+      modalProps,
+    });
+  };
+
+  const hideModal = () => {
+    setStore({
+      ...store,
+      modalType: null,
+      modalProps: {},
+    });
+  };
+
+  const renderComponent = () => {
+    const ModalComponent = MODAL_COMPONENTS[modalType];
+    if (!modalType || !ModalComponent) {
+      return null;
+    }
+    return <ModalComponent id="global-modal" {...modalProps} />;
+  };
 
   return (
-    <ModalContext.Provider value={value}>
+    <ModalContext.Provider value={{ store, showModal, hideModal }}>
+      {renderComponent()}
       {children}
-      <CustomModal show={modalShow} onHide={() => setModalShow(false)} />
     </ModalContext.Provider>
   );
 };
 
-export const useModal = () => {
+export const useModalGlobal = () => {
   const context = useContext(ModalContext);
 
   if (context === undefined) {
-    throw new Error("useModal must be used within a ModalProvider");
+    throw new Error("useModalGlobal must be used within a ModalProvider");
   }
   return context;
 };
