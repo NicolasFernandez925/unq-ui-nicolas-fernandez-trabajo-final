@@ -17,10 +17,11 @@ import { listaDeJugadas } from "constants";
 import SelectedPlay from "components/Game/SelectedPlay";
 import { MODAL_TYPES } from "constants";
 import { useModalGlobal } from "context/Modal";
+import { useGetQueryParams } from "Hooks/useGetQueryParams";
 
 const Game = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+
   const [activate, setActivate] = useState(false);
   const { showModal } = useModalGlobal();
 
@@ -38,7 +39,7 @@ const Game = () => {
     realizoJugadaJugadorUno,
     realizoJugadaJugadorDos,
   } = useGame();
-
+  const { param: getMode } = useGetQueryParams("mode");
   const handleGoBack = () => {
     dispatch(reiniciarJuego());
     navigate(-1);
@@ -51,18 +52,12 @@ const Game = () => {
   }, []);
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const getMode = params.get("mode");
-    console.log(getMode);
     if (state.rondas === 0) {
       handleOpenModalEndOfTheGame();
     }
-  }, [state.rondas, handleOpenModalEndOfTheGame, location.search]);
+  }, [state.rondas, handleOpenModalEndOfTheGame, getMode]);
 
   const handleSelectedImageGame = (imagesGame, nameImage) => {
-    const params = new URLSearchParams(location.search);
-    const getMode = params.get("mode");
-
     if (getMode === "singlePlayer")
       dispatch(jugadaSeleccionada(imagesGame, nameImage));
 
@@ -82,14 +77,12 @@ const Game = () => {
   };
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const getMode = params.get("mode");
     if (getMode === "singlePlayer") {
       dispatch(seleccionarModo(MODO.JUGADOR_UNO));
     } else {
       dispatch(seleccionarModo(MODO.JUGADOR_DOS));
     }
-  }, [location.search, dispatch, activate]);
+  }, [dispatch, activate, getMode]);
 
   const handleRevancha = () => {
     dispatch(jugarRevancha());

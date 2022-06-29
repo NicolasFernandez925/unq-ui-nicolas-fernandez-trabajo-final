@@ -1,9 +1,10 @@
 import { useGame } from "context/Game";
 import { reiniciarJuego } from "context/Game/action";
 import { useModalGlobal } from "context/Modal";
+import { useGetQueryParams } from "Hooks/useGetQueryParams";
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ModalEndOfTheGame = () => {
   const { hideModal, store } = useModalGlobal();
@@ -13,8 +14,9 @@ const ModalEndOfTheGame = () => {
     puntosPerdidosJugadorUno,
     puntosGanadosJugadorDos,
   } = useGame();
-  const location = useLocation();
+
   const navigate = useNavigate();
+  const { param: getMode } = useGetQueryParams("mode");
   const { modalProps } = store || {};
   const { btnClose } = modalProps || {};
 
@@ -24,9 +26,6 @@ const ModalEndOfTheGame = () => {
     dispatch(reiniciarJuego());
   };
 
-  const params = new URLSearchParams(location.search);
-  const getMode = params.get("mode");
-  console.log(puntosGanadosJugadorUno, puntosPerdidosJugadorUno);
   const winningMessage = () => {
     let message = "";
     if (
