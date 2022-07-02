@@ -10,6 +10,7 @@ const ModalEndOfTheGame = () => {
   const { hideModal, store } = useModalGlobal();
   const {
     dispatch,
+    empatados,
     puntosGanadosJugadorUno,
     puntosPerdidosJugadorUno,
     puntosGanadosJugadorDos,
@@ -28,6 +29,7 @@ const ModalEndOfTheGame = () => {
 
   const winningMessage = () => {
     let message = "";
+
     if (
       puntosGanadosJugadorUno - puntosPerdidosJugadorUno < 0 &&
       getMode === "singlePlayer"
@@ -48,9 +50,10 @@ const ModalEndOfTheGame = () => {
       getMode === "multiplayer"
     ) {
       message = "Jugador 2  ha ganado";
-    } else {
+    } else if (empatados !== 0) {
       message = "Hubo un empate";
     }
+
     return message;
   };
 
@@ -61,14 +64,13 @@ const ModalEndOfTheGame = () => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header></Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="my-5">
         <h2 className="text-center">End of the game</h2>
         <p className="text-center mt-3 fw-bold">{winningMessage()}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="dark" onClick={handleRedirectToStart}>
-          {btnClose || "Go to start"}
+          {btnClose || "Play again"}
         </Button>
       </Modal.Footer>
     </Modal>

@@ -11,6 +11,7 @@ import {
 import { gameReducer } from "./gameReducer";
 import {
   GANO_JUGADOR_UNO_VS_MAQUINA,
+  JUGAR_REVANCHA,
   SUMAR_PUNTOS_GANADOR_MULTIPLAYER,
 } from "./types";
 
@@ -87,7 +88,7 @@ export const GameProvider = ({ children }) => {
         )
       );
     }
-  }, [state.jugadorUno.jugadaActual, state.modo]);
+  }, [state.jugadorUno.jugadaActual, state.modo, dispatch]);
 
   useEffect(() => {
     if (realizoJugadaJugadorUno && realizoJugadaJugadorDos) {
@@ -104,7 +105,7 @@ export const GameProvider = ({ children }) => {
         )
       );
     }
-  }, [realizoJugadaJugadorUno, realizoJugadaJugadorDos]);
+  }, [realizoJugadaJugadorUno, realizoJugadaJugadorDos, dispatch]);
 
   const ganadorEntreJugadorUnoYJugadorDos = (jugador1, jugador2) => {
     if (jugadorUnoLeGanaAOtroJugador(jugador1, jugador2)) {
@@ -117,7 +118,7 @@ export const GameProvider = ({ children }) => {
     } else {
       dispatch({
         type: SUMAR_PUNTOS_GANADOR_MULTIPLAYER,
-        payload: { jugador: MODO.JUGADOR_DO },
+        payload: { jugador: MODO.JUGADOR_DOS },
       });
     }
   };

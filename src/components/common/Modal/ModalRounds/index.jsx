@@ -54,9 +54,9 @@ const ModalRounds = () => {
             ]}
           >
             <option value="">Select rounds</option>
+            <option value="1">1</option>
             <option value="3">3</option>
             <option value="5">5</option>
-            <option value="8">8</option>
           </Form.Select>
         </div>
         <p className="text-danger mt-3 px-4">{messageErrorForm}</p>

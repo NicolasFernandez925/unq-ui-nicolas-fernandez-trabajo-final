@@ -12,7 +12,6 @@ import {
   EMPATE,
   JUGAR_REVANCHA,
   RONDAS,
-  RESET_GAME_BUT_NOT_ROUNDS,
 } from "./types";
 
 export const gameReducer = (state, { type, payload }) => {
@@ -93,6 +92,7 @@ export const gameReducer = (state, { type, payload }) => {
         descripcionVictoria: "",
         jugadorUno: { ...state.jugadorUno, jugadaActual: {} },
         jugadorDos: { ...state.jugadorDos, jugadaActual: {} },
+        maquina: { ...state.maquina, jugadaActual: {} },
       };
     case JUGADA_MAQUINA:
       return {

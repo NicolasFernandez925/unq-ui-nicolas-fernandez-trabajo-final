@@ -8,13 +8,13 @@ body {
 }
 
 :root {
-  --bg-main-color-100: #282828;
+  --bg-main-color-100: #0a0a0a;
   --bg-red-50: #ff8989;
   --bg-green-50: #adff8c;
   --bg-green-10: #e6ffdc;
   --bg-blue-50: #92baff;
   --bg-blue-10: #d6e5ff;
-  --color-main-white: #ffff;
+  --color-main-white: rgb(129, 129, 129);
 }
 
 .container-home {

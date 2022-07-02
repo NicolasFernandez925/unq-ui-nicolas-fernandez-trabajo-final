@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useGame } from "context/Game";
 import {
   jugadaSeleccionada,
@@ -18,6 +18,7 @@ import SelectedPlay from "components/Game/SelectedPlay";
 import { MODAL_TYPES } from "constants";
 import { useModalGlobal } from "context/Modal";
 import { useGetQueryParams } from "Hooks/useGetQueryParams";
+import { useBeforeUnload } from "Hooks/useBeforeUnload";
 
 const Game = () => {
   const navigate = useNavigate();
@@ -44,6 +45,8 @@ const Game = () => {
     dispatch(reiniciarJuego());
     navigate(-1);
   };
+
+  useBeforeUnload(realizoJugadaJugadorUno, realizoJugadaJugadorDos);
 
   const handleOpenModalEndOfTheGame = useCallback(() => {
     showModal(MODAL_TYPES.END_OF_THE_GAME, {
@@ -137,13 +140,16 @@ const Game = () => {
             Reiniciar
           </button>
         </div>
-
-        <p className="rounds_played mt-4">
-          <span className="fw-bold">Rounds played: {state.rondas}</span>
-        </p>
       </div>
+      <Row className="text-center mb-3">
+        <Col>
+          <p className="rounds_played">
+            <span className="fw-bold">Ronda {state.rondas}</span>
+          </p>
+        </Col>
+      </Row>
       <Row className="d-flex justify-content-center align-items-center">
-        <Col xs={5} md={4} lg={2}>
+        <Col xs={4} md={3} lg={2}>
           <SelectedPlay
             conditionToShow={jugadaActualJugadorUno?.image}
             mostrarNombreJugadaSeleccionada={mostrarNombreJugadaSeleccionada}
@@ -157,7 +163,7 @@ const Game = () => {
         <Col xs={2} md={2} lg={1} className="text-center">
           <span className="text_vs">VS</span>
         </Col>
-        <Col xs={5} md={4} lg={2}>
+        <Col xs={4} md={3} lg={2}>
           <SelectedPlay
             conditionToShow={
               jugadorMaquina?.image || jugadaActualJugadorDos?.image
@@ -182,10 +188,12 @@ const Game = () => {
         empatados={empatados}
         puntosPerdidosJugadorUno={puntosPerdidosJugadorUno}
       />
-      <Row className="d-flex justify-content-center mt-5">
+      <Row className="d-flex justify-content-center xs-mt-2 lg-mt-5">
         <Col lg={8} className="d-flex justify-content-center flex-wrap">
           <div className="d-flex flex-column justify-content-center align-items-center">
-            <p className="descripcion_victoria">{state.descripcionVictoria}</p>
+            <p className="descripcion_victoria md-mt-5">
+              {state.descripcionVictoria}
+            </p>
             {mostrarBotonDeRevancha() && (
               <button
                 type="button"
@@ -199,7 +207,7 @@ const Game = () => {
         </Col>
       </Row>
       <Row className="d-flex justify-content-center container_images-selected">
-        <Col lg={8} className="d-flex justify-content-center flex-wrap">
+        <Col xs={12} lg={8} className="d-flex justify-content-center flex-wrap">
           {listaDeJugadas.map((imagesGame) => (
             <GameItem
               key={crypto.randomUUID()}
