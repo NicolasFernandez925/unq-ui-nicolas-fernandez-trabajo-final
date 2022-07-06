@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+### Trabajo práctico final - Interfaces de usuario - UNQUI
+# Piedra, Papel, Tijera, Lagarto y Spock
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Intrucciones para poder jugar.
 
-In the project directory, you can run:
+1.  Tener instalado cualquier versión de **Node** en su computadora. **Link** para la descarga: https://nodejs.org/en/download/
+2.  Para descargar el proyecto hay 2 formas:
+    *  Descargar como ZIP y extraer los archivos en una carpeta.
+     <br>(Ver captura)<br> ![image](https://user-images.githubusercontent.com/53442176/177654634-99324f73-6671-4d34-9cbf-a2a9018ea29b.png)
+	  * En cualquier terminal, clonar con el comando **git clone**, segudio de la url del repositorio. Por ejemplo  **git clone** https://github.com/NicolasFernandez925/unq-ui-nicolas-fernandez-trabajo-final.git
+   
 
-### `npm start`
+3.  Una vez teniendo la carpeta en nuestro escritorio, abrimos el IDE de preferencia, y seleccionamos la carpeta que descargamos en el paso anterior.
+4.  Para instalar las dependencias hay 2 formas:
+    *  Abrimos la consola desde el mismo IDE, en la barra superior (si utilizan visual) hacer click en **Terminal** y **Nueva terminal**, se les abrira en la parte inferior una consola en la cual, deben de introducir el siguiente comando, **npm install** para instalar todas las dependencias del proyecto
+	  *  Abrir cualquie terminar, posicionarte sobre la carpeta descargada (punto 2) e introducimos los siguientes comandos: **cd NOMBRE_CARPETA** y damos enter. Y por último introduciomos **npm install** para instalar las dependencias del proyecto.
+5.  Una vez finalizada la instalación del paso anterior, en la linea de comandos, escribir: **npm start** y se les abrira el juego en el navegador.
+6. ### ¡Jugar!
+      
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  
+  
+  
