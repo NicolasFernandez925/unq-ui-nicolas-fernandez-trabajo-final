@@ -62,11 +62,10 @@ const ModalEndOfTheGame = () => {
       show={true}
       size="md"
       aria-labelledby="contained-modal-title-vcenter"
-      centered
     >
-      <Modal.Body className="my-5">
+      <Modal.Body className="my-2">
         <h2 className="text-center">End of the game</h2>
-        <p className="text-center mt-3 fw-bold">{winningMessage()}</p>
+        <p className="text-center m-0 fw-bold">{winningMessage()}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="dark" onClick={handleRedirectToStart}>

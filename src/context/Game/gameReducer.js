@@ -10,7 +10,7 @@ import {
   JUGADA_SELECCIONADA_JUGADOR_DOS,
   SUMAR_PUNTOS_GANADOR_MULTIPLAYER,
   EMPATE,
-  JUGAR_REVANCHA,
+  LIMPIAR_JUGADAS,
   RONDAS,
 } from "./types";
 
@@ -61,7 +61,6 @@ export const gameReducer = (state, { type, payload }) => {
           ...state.jugadorDos,
           ganados: state.jugadorDos.ganados + puntosJugadorDos,
         },
-        rondas: state.rondas - 1 < 0 ? 0 : state.rondas - 1,
       };
     case GANO_JUGADOR_UNO_VS_MAQUINA:
       let puntosGanados = 0;
@@ -75,7 +74,6 @@ export const gameReducer = (state, { type, payload }) => {
           ganados: state.jugadorUno.ganados + puntosGanados,
           perdidos: state.jugadorUno.perdidos + puntosPerdidos,
         },
-        rondas: state.rondas - 1 < 0 ? 0 : state.rondas - 1,
       };
     case EMPATE:
       let puntosEmpate = 0;
@@ -84,9 +82,8 @@ export const gameReducer = (state, { type, payload }) => {
       return {
         ...state,
         empates: state.empates + puntosEmpate,
-        rondas: state.rondas - 1 < 0 ? 0 : state.rondas - 1,
       };
-    case JUGAR_REVANCHA:
+    case LIMPIAR_JUGADAS:
       return {
         ...state,
         descripcionVictoria: "",

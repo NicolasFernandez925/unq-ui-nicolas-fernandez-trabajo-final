@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "context/Game";
 import {
   jugadaSeleccionada,
   jugadaSeleccionadaJugadorDos,
-  jugarRevancha,
+  limpiarJugadas,
   reiniciarJuego,
   seleccionarModo,
 } from "context/Game/action";
@@ -22,8 +22,8 @@ import { useBeforeUnload } from "Hooks/useBeforeUnload";
 
 const Game = () => {
   const navigate = useNavigate();
-
-  const [activate, setActivate] = useState(false);
+  const timeOutID = useRef();
+  const [currentRounds, setCurrentRounds] = useState(0);
   const { showModal } = useModalGlobal();
 
   const {
@@ -55,14 +55,20 @@ const Game = () => {
   }, []);
 
   useEffect(() => {
-    if (state.rondas === 0) {
+    if (currentRounds >= Number(state.rondas)) {
       handleOpenModalEndOfTheGame();
     }
-  }, [state.rondas, handleOpenModalEndOfTheGame, getMode]);
+  }, [state.rondas, handleOpenModalEndOfTheGame, getMode, currentRounds]);
 
   const handleSelectedImageGame = (imagesGame, nameImage) => {
-    if (getMode === "singlePlayer")
+    if (timeOutID.current) clearTimeout(timeOutID.current);
+    if (getMode === "singlePlayer") {
       dispatch(jugadaSeleccionada(imagesGame, nameImage));
+      const id = setTimeout(() => {
+        dispatch(limpiarJugadas());
+      }, 3500);
+      timeOutID.current = id;
+    }
 
     if (getMode === "multiplayer") {
       if (!realizoJugadaJugadorUno) {
@@ -72,11 +78,7 @@ const Game = () => {
       if (!realizoJugadaJugadorDos)
         dispatch(jugadaSeleccionadaJugadorDos(imagesGame, nameImage));
     }
-  };
-
-  const handleReset = () => {
-    setActivate((prev) => !prev);
-    dispatch(reiniciarJuego());
+    setCurrentRounds((round) => round + 1);
   };
 
   useEffect(() => {
@@ -85,10 +87,10 @@ const Game = () => {
     } else {
       dispatch(seleccionarModo(MODO.JUGADOR_DOS));
     }
-  }, [dispatch, activate, getMode]);
+  }, [dispatch, getMode]);
 
   const handleRevancha = () => {
-    dispatch(jugarRevancha());
+    dispatch(limpiarJugadas());
   };
 
   const mostrarJugadaDelJugador = (jugadaUno, jugadaDos) => {
@@ -132,19 +134,15 @@ const Game = () => {
           <button type="button" onClick={handleGoBack} className="btn_go-back">
             Inicio
           </button>
-          <button
-            type="button"
-            onClick={handleReset}
-            className="btn_reiniciar-partida"
-          >
-            Reiniciar
-          </button>
         </div>
       </div>
       <Row className="text-center mb-3">
         <Col>
           <p className="rounds_played">
-            <span className="fw-bold">Ronda {state.rondas}</span>
+            <span className="fw-bold">
+              Ronda{" "}
+              {state.rondas < currentRounds ? currentRounds + 1 : currentRounds}
+            </span>
           </p>
         </Col>
       </Row>
@@ -155,7 +153,7 @@ const Game = () => {
             mostrarNombreJugadaSeleccionada={mostrarNombreJugadaSeleccionada}
             mostrarJugadaDelJugador={mostrarJugadaDelJugador}
             namePlayer={jugadorUno.nombre}
-            messageReady={"Jugador 1 listo"}
+            messageReady={"Listo"}
             jugadorUno={jugadaActualJugadorUno}
             jugadorDos={jugadaActualJugadorUno}
           />
@@ -213,6 +211,8 @@ const Game = () => {
               key={crypto.randomUUID()}
               handleSelectedImageGame={handleSelectedImageGame}
               item={imagesGame}
+              realizoJugadaJugadorUno={realizoJugadaJugadorUno}
+              realizoJugadaJugadorDos={realizoJugadaJugadorDos}
             />
           ))}
         </Col>

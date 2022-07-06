@@ -11,7 +11,6 @@ import {
 import { gameReducer } from "./gameReducer";
 import {
   GANO_JUGADOR_UNO_VS_MAQUINA,
-  JUGAR_REVANCHA,
   SUMAR_PUNTOS_GANADOR_MULTIPLAYER,
 } from "./types";
 

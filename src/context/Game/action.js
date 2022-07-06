@@ -6,7 +6,7 @@ import {
   DESCRIPCION_VICTORIA,
   JUGADA_SELECCIONADA_JUGADOR_DOS,
   EMPATE,
-  JUGAR_REVANCHA,
+  LIMPIAR_JUGADAS,
   RONDAS,
 } from "./types";
 
@@ -58,9 +58,9 @@ export const reiniciarJuego = () => {
   };
 };
 
-export const jugarRevancha = () => {
+export const limpiarJugadas = () => {
   return {
-    type: JUGAR_REVANCHA,
+    type: LIMPIAR_JUGADAS,
   };
 };
 
