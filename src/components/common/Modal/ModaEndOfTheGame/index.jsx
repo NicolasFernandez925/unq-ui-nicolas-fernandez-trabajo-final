@@ -64,12 +64,12 @@ const ModalEndOfTheGame = () => {
       aria-labelledby="contained-modal-title-vcenter"
     >
       <Modal.Body className="my-2">
-        <h2 className="text-center">End of the game</h2>
+        <h2 className="text-center">Fin del juego</h2>
         <p className="text-center m-0 fw-bold">{winningMessage()}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="dark" onClick={handleRedirectToStart}>
-          {btnClose || "Play again"}
+          {btnClose || "Ir al inicio"}
         </Button>
       </Modal.Footer>
     </Modal>

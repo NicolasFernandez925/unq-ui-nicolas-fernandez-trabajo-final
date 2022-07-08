@@ -24,7 +24,7 @@ const ModalRules = () => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {title || "Rules"}
+          {title || "Reglas"}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -32,7 +32,7 @@ const ModalRules = () => {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="dark" onClick={handleModalToggle}>
-          {btnClose || "Close"}
+          {btnClose || "Cerrar"}
         </Button>
       </Modal.Footer>
     </Modal>

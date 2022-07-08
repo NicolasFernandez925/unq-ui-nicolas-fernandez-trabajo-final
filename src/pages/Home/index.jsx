@@ -12,13 +12,13 @@ const Home = () => {
   const handleOpenModalReadRules = () => {
     showModal(MODAL_TYPES.RULES, {
       title: "Rules",
-      btnClose: "Close",
+      btnClose: "Cerrar",
     });
   };
 
   const handleOpenModalSelectRoundsAndName = (path) => {
     showModal(MODAL_TYPES.ROUNDS, {
-      title: "Select round",
+      title: "Seleccionar rondas",
       pathRedirect: path,
     });
   };
