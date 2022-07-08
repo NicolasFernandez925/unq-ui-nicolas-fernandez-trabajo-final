@@ -42,8 +42,14 @@ const Game = () => {
   } = useGame();
   const { param: getMode } = useGetQueryParams("mode");
   const handleGoBack = () => {
-    dispatch(reiniciarJuego());
-    navigate(-1);
+    if (
+      window.confirm(
+        "Perderás el progreso de la partida actual, ¿ Estás de acuerdo ?"
+      )
+    ) {
+      dispatch(reiniciarJuego());
+      navigate(-1);
+    }
   };
 
   useBeforeUnload(realizoJugadaJugadorUno, realizoJugadaJugadorDos);

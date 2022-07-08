@@ -7,7 +7,8 @@ export const useBeforeUnload = (
   useEffect(() => {
     const beforeUnloadListener = (event) => {
       event.preventDefault();
-      return (event.returnValue = "Are you sure you want to exit?");
+      return (event.returnValue =
+        "Perderás el progreso de la partida actual, ¿ Estás de acuerdo ?");
     };
 
     window.addEventListener("beforeunload", beforeUnloadListener);
