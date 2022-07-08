@@ -1,8 +1,8 @@
-import ModalRules from "components/common/Modal/ModalRules";
+import ModalRules from "components/Modal/ModalRules";
 import { MODAL_TYPES } from "constants";
 import { createContext, useContext, useState } from "react";
-import ModalRounds from "components/common/Modal/ModalRounds";
-import ModalEndOfTheGame from "components/common/Modal/ModaEndOfTheGame";
+import ModalRounds from "components/Modal/ModalRounds";
+import ModalEndOfTheGame from "components/Modal/ModaEndOfTheGame";
 
 const initalState = {
   showModal: () => {},

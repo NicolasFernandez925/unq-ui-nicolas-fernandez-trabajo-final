@@ -11,7 +11,7 @@ const Home = () => {
 
   const handleOpenModalReadRules = () => {
     showModal(MODAL_TYPES.RULES, {
-      title: "Rules",
+      title: "Reglas",
       btnClose: "Cerrar",
     });
   };
