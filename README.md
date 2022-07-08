@@ -1,5 +1,6 @@
 ### Trabajo práctico final - Interfaces de usuario - UNQUI
 # Piedra, Papel, Tijera, Lagarto y Spock
+### Se trata de un juego extendido de Piedra, Papel y Tijera con nuevos personakjes.<br><a href="https://bigbangtheory.fandom.com/wiki/Rock,_Paper,_Scissors,_Lizard,_Spock" >Ver más</a>
 
 
 ## Intrucciones para poder jugar.
